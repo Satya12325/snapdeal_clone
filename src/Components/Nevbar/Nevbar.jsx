@@ -1,29 +1,22 @@
 import style from "./Navbar.module.css";
 import * as React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import Badge from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-
-
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import SignUpBtn from "./SignUpBtn";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-  '& .MuiBadge-badge': {
+  "& .MuiBadge-badge": {
     right: -3,
     top: 13,
     border: `2px solid ${theme.palette.background.paper}`,
-    padding: '0 4px',
+    padding: "0 4px",
   },
 }));
-
 
 export default function Nevbar() {
   const [margin, setMargin] = useState("27px");
@@ -57,12 +50,12 @@ export default function Nevbar() {
               alt="Logo"
             />
           </div>
-          <div>
+          <div style={{width:"50%"}}>
             <div className="input-group mb-3 border-0">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Recipient's username"
+                placeholder="Search products & brands"
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
               />
@@ -70,20 +63,18 @@ export default function Nevbar() {
                 className="input-group-text text-light bg-dark border-0"
                 id="basic-addon2"
               >
-                {" "}
                 <SearchIcon />
                 Search
               </span>
             </div>
           </div>
           <div>
-            Cart 
-            <IconButton aria-label="cart">
-      <StyledBadge badgeContent={4} color="secondary">
-        <ShoppingCartOutlinedIcon style={{color: "white"}} />
-      </StyledBadge>
-    </IconButton>
+            Cart
+            <StyledBadge badgeContent={4} color="secondary">
+              <ShoppingCartOutlinedIcon style={{ color: "white" }} />
+            </StyledBadge>
           </div>
+          <SignUpBtn/>
         </div>
       </AppBar>
     </React.Fragment>

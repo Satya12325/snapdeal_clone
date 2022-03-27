@@ -1,0 +1,35 @@
+.linethrough{
+    color: rgb(214, 208, 208);
+    text-decoration: line-through;
+}
+.discount{
+   
+     border: 1px solid rgb(214, 208, 208);
+     font-size: 12px;
+     padding: 3px;
+     color: rgb(214, 208, 208);
+
+}
+.cards{
+    
+    width: 100%;
+    height: 350px;
+    margin: 20px 0;
+    
+}
+.cards:hover {
+    border-radius: 3px;
+    /* box-shadow: 10px 20px 20px 30px rgba(0, 0, 0, 0.3); */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+    cursor: pointer;
+}
+.padding{
+    padding-left: 20px
+}
+/* style={{fontSize: "15px",paddingTop: "20px",paddingLeft: "20px"}} */
+.ProductName{
+    font-size: 12px;   
+    padding-left: 20px;
+    color: rgb(214, 208, 208);
+   
+}

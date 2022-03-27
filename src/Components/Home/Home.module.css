@@ -1,0 +1,85 @@
+.home{
+   
+    width: 92%;
+    margin: auto;    
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #F7F7F7;
+}
+
+.container {
+    
+   
+    background-color: black;
+    margin-top: 280px;
+    margin: auto;
+    height: 250px;
+    /* height:200px; */
+    overflow: hidden;
+   
+    border-radius: 3px;
+    
+}
+.AutoImageSlide{
+    width: 78%;
+    border: 1px solid gainsboro;    
+    border-radius: 3px;
+    height: 290px;
+}
+.wrapper {
+    width: 100%;
+    display: flex;
+    animation: slide 10s infinite;
+}
+.img {
+    width: 100%;
+    height: 250px;
+}
+
+@keyframes slide{
+0%{
+    transform: translateX(0);
+}
+25%{
+    transform: translateX(0);
+}
+30%{
+    transform: translateX(-100%);
+}
+50%{
+    transform: translateX(-100%);
+}
+55%{
+    transform: translateX(-200%);
+}
+75%{
+    transform: translateX(-200%);
+}
+80%{
+    transform: translateX(-300%);
+}
+100%{
+    transform: translateX(-300%);
+}
+}
+
+
+.underBAnner{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-size:12px;
+
+}
+.underBAnner > div{
+   padding : 10px 20px;
+   cursor: pointer;
+}
+
+/* sidebar css */
+.sidebar{
+    height: 100vh;
+    width:18%;
+    background-color: green;
+}

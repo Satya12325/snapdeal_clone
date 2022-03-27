@@ -1,7 +1,44 @@
 .container{
 
     /* background-color:#E40046; */
-    height: 70px;
+    height: 75px;
     display: flex;
     color: #fff;
+    justify-content: space-between;
+    padding: 15px 30px;
+    padding-top: 15px;
+}
+.Signup{
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    border: 0px;
+    background: transparent;
+    padding: 10px;
+    color: white;
+   
+}
+.logIn{
+    padding: 10px 5px;
+    cursor: pointer;
+}
+.Signup:hover{
+    background:black;
+    
+}
+.Avatar{
+    background:#CD003F !important;
+    font-size: 12px!important;
+      
+}
+.Avatar:hover{
+    background:black !important
+}
+.btn{
+    width: 100%;
+    border: 0;
+    background:tomato;
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
 }
