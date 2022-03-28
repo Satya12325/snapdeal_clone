@@ -27,14 +27,14 @@
 .heading{
     display: flex;
     border-bottom: 1px solid rgb(209, 206, 206);
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 .heading > div:nth-child(1){
     width: 95%;  
     margin-right: 30px;
 }
 .heading > div:nth-child(1) > p{
-    font-size: 1.7rem;
+    font-size: 1.5rem;
 }
 .heading > div:nth-child(2){
     width: 5%;
@@ -56,22 +56,27 @@
 .info > div{
     display: flex;
     width: 100%;
-    margin-top: 1rem;
-    font-size: 1.1rem;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
 }
-
+.rs{
+    color:red;
+    font-size: 1.6rem;
+    margin-right:1rem
+}
 .price > div:nth-child(1){
-    width: 50%;
+    width: 40%;
     float: left;
     color: rgb(193,193,189);
 }
 .price > div:nth-child(2){
-    width: 40%;
+    width: 50%;
     margin-left: auto;
+    color: rgb(114, 114, 114);
 }
 .dis{
     border: 1px solid rgb(193,193,189);
-    height: 15px;
+    height: 28px;
     padding: 0.2rem;
     margin-top: 0.3rem;
     font-size: 0.9rem;
@@ -81,24 +86,26 @@
 .offers{
     border: 1px dashed rgb(193,193,189);
     border-radius: 5px;
-    margin-top: 0.5rem;
+    margin-top: 0rem;
     padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
 }
 .offers > div{
     display: flex;
 }
 
 .offers > div > div:nth-child(1){
-    flex-basis: 13%;
+    width: 1.5rem;
     margin: 0.5rem 1rem 0 0.4rem;
-    height: 20px;
-    padding: 0.5rem;
+    height: 30px;
+    padding: 0.3rem;
     background-color: rgb(107,193,209);
     border-radius: 5px;
 }
 
 .colorDiv > div:nth-child(1){
   flex-basis: 10%;
+  color: rgb(168, 168, 167);
 }
 .colorDiv > div:nth-child(2){
     flex-basis: 90%;
@@ -123,6 +130,7 @@ padding: 0.3rem;
 
 .sizeDiv > div:nth-child(1){
     flex-basis: 10%;
+    color: rgb(168, 168, 167);
 }
 
 .sizeDiv > div:nth-child(2){
@@ -131,7 +139,7 @@ padding: 0.3rem;
 }
 .sizeDiv > div:nth-child(2) > div{    
     width: 2.5rem;
-    height: 1.5rem;
+    height: 2.5rem;
     text-align: center;
     padding: 0.5rem 0;
     margin-right: 1rem;
@@ -147,7 +155,7 @@ padding: 0.3rem;
 }
 .btnDiv > div{
     width: 200px;
-    height: 30px;
+    height: 50px;
     text-align: center;
     padding: 0.6rem 0;
     margin-right: 1rem;
@@ -177,6 +185,7 @@ padding: 0.3rem;
 }
 .deliveryDiv{
     margin-top: 5rem;
+    color: rgb(168, 168, 167);
 }
 .deliveryDiv > div:nth-child(1){
     flex-basis: 10%;
@@ -188,7 +197,7 @@ padding: 0.3rem;
     flex-basis: 50%;
 }
 .pincode{
-    height:30px;
+    height:35px;
     display:flex;
     margin-right:2rem
 }
@@ -198,7 +207,7 @@ padding: 0.3rem;
     font-size:1.2rem;
 }
 .check{
-    height:85%;
+    height:90%;
     font-size:1rem;
     padding: 0.2rem 1rem;
      color:white;
@@ -224,7 +233,7 @@ padding: 0.3rem;
         margin-right: 20px;
     }
     .heading > div:nth-child(1) > p{
-        font-size: 1.2rem;
+        font-size: 1rem;
         
     }
     /* .heading > div:nth-child(2) > div:nth-child(1){
@@ -241,10 +250,31 @@ padding: 0.3rem;
     .info > div{
         font-size: 0.7rem;
     }
+    .rs{
+        font-size: 1rem;
+    }
+    .dis{
+        border: 1px solid rgb(193,193,189);
+        height: 22px;
+        width: 50px;
+        padding: 0.2rem;
+        margin-top: 0.3rem;
+        font-size: 0.5rem;
+    }
+    
+    .sizeDiv > div:nth-child(2) > div{    
+        width: 2rem;
+        height: 3.5rem;
+        padding: 0.1rem 0;
+        margin-right: 1rem;
+        border: 1px solid rgb(193,193,189);
+        border-radius: 5px;
+    }
     .btnDiv > div{
         width: 100px;
-        height: 10px;
-        font-size: 0.8rem;
+        height: 25px;
+        font-size: 0.5rem;
+        padding: 0.4rem 0;
     }
     .icon{
         margin-right: 0.1rem
@@ -256,7 +286,7 @@ padding: 0.3rem;
         font-size: 0.5rem;
     }
     .offers > div > div:nth-child(1){
-        height: 10px;
+        height: 20px;
     }
     .sizeDiv > div:nth-child(2) > div{
         height: 1rem;
@@ -268,17 +298,23 @@ padding: 0.3rem;
         margin-left: 0.5rem;
     }
     .input{
-        height:80%;
+        height:95%;
         padding-left: 1rem;
         font-size:0.6rem;
     }
     .check{
-        height:70%;
+        height: 95%;
         font-size:0.5rem;
-        padding: 0.2rem 1rem;
+        padding: 0.1rem 1rem;
          color:white;
          background:black;
          cursor:pointer;
+    }
+    .lasth1{
+        font-size: 0.8rem;
+    }
+    .last{
+        font-size: 0.6rem;
     }
     
 }
