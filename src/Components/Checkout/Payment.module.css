@@ -1,0 +1,211 @@
+.main{
+    width: 100%;
+    background-color: rgb(247,247,247);
+}
+
+.cont{
+    width: 90%;
+    margin: 2rem auto;
+    background-color: white;
+    margin-bottom: 2rem;
+    /* border: 1px solid rgb(247,247,247); */
+}
+
+/* .cont > div:nth-child(1){
+    background-color: rgb(25,188,156);
+    padding: 1rem;
+    display: flex;
+    height: 50px;
+    width: 100%;
+} */
+
+.notif > div:nth-child(1){
+    /* flex-basis: 5%; */
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    color: rgb(25,188,156);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 3rem;
+    padding-top: 0.2rem;
+    margin-right: 30px;
+}
+
+.notif > div:nth-child(2){
+    flex-basis: 80%;
+    color: white;
+    font-size: 0.7rem;
+}
+.notif > div:nth-child(3){
+    flex-basis: 5%;
+    margin-left: auto;
+    color: white;
+    font-size: 3rem;
+    text-align: right;
+    cursor: pointer;
+}
+.cart{
+    display: flex;
+    width: 105%;
+    padding: 3rem;
+}
+.cart > div:nth-child(1){
+    width: 10%;
+}
+
+.cart > div:nth-child(2){
+    width: 30%;
+}
+.cart > div:nth-child(3){
+    width: 23%;
+    border-left: 1px solid rgb(211, 211, 211);
+    padding-left: 2rem;
+}
+.heading{
+    color: rgb(193,193,189);
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+}
+.value{
+    color: rgb(193,193,189);
+    font-size: 1.5rem;
+}
+.items{
+    width: 60px;
+    height: 20px;
+    border:1px solid rgb(25,188,156);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.7rem;
+    color: rgb(25,188,156);
+}
+.view{
+    font-size:1.1rem;
+}
+
+.cart > div:nth-child(4){
+    width: 40%;
+    display: flex;
+}
+.cart > div:nth-child(4) > div{
+    height: 30px;
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 3px;
+}
+.cart > div:nth-child(4) > div:nth-child(1){
+    width: 43%;
+    background-color: rgb(223,8,67);
+    margin-right: 0.5rem;
+    cursor: pointer;
+    
+}
+.cart > div:nth-child(4) > div:nth-child(1):hover{
+    background-color: rgb(192, 16, 63)
+}
+.cart > div:nth-child(4) > div:nth-child(2){
+    width: 20%;
+    background-color: rgb(51,51,51);
+    cursor: pointer;    
+}
+.cart > div:nth-child(4) > div:nth-child(2):hover{
+    background-color: rgba(51, 51, 51, 0.884);
+}
+
+@media screen and (min-width: 400px) and (max-width: 1300px) {
+    .main{
+        width: 1200px;
+    }
+    .cart > div:nth-child(4){
+        width: 200px;
+        flex-direction: column;
+    }
+    .cart > div:nth-child(4) > div:nth-child(1){
+        margin-bottom: 0.5rem;
+        width: 90%;
+    }
+
+    .cart > div:nth-child(4) > div:nth-child(2){
+        width: 70%;
+    } 
+}
+
+@media screen and (max-width: 400px) {
+    .main{
+        width: 350px
+    }
+    .cont{
+        margin: 0px;
+        width: 100%;
+    }
+    .notif > div:nth-child(2){
+        font-size: 0.4rem;
+    }
+    .cart{
+        padding: 1rem;
+    }
+    .cart > div:nth-child(1){
+        width: 100px;
+    }
+    
+    .cart > div:nth-child(2){
+        width: 250px;
+    }
+    .cart > div:nth-child(3){
+        width: 250px;
+        border-left: 1px solid rgb(211, 211, 211);
+        padding-left: 1rem;
+    }
+    .heading{
+        color: rgb(193,193,189);
+        font-size: 0.6rem;
+        margin-bottom: 0.7rem;
+    }
+    .value{
+        color: rgb(193,193,189);
+        font-size: 0.8rem;
+    }
+    .items{
+        font-size: 0.5rem;
+        padding: 0.1rem 0.3rem;
+
+    }
+    .view{
+        font-size:0.6rem;
+    }
+    .cart > div:nth-child(4){
+        width: 150px;
+        flex-direction: column;
+    }
+    .cart > div:nth-child(4) > div:nth-child(1){
+        margin-bottom: 0.5rem;
+        width: 90%;
+    }
+
+    .cart > div:nth-child(4) > div:nth-child(2){
+        width: 70%;
+    }
+    .cart > div:nth-child(4) > div{
+        height: 8px;
+        padding: 0.3rem;
+        color: white;
+        font-size: 0.3rem;
+        text-align: center;
+        border-radius: 3px;
+    }
+    .cart > div:nth-child(4) > div:nth-child(1){
+        width: 65px;
+        background-color: rgb(223,8,67);
+        margin-right: 0.3rem;
+        cursor: pointer;
+        
+    }
+    .cart > div:nth-child(4) > div:nth-child(2){
+        width: 40px;
+        background-color: rgb(51,51,51);
+        cursor: pointer;    
+    }
+}
