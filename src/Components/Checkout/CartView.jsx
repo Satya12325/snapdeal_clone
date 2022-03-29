@@ -2,18 +2,21 @@ import {RiCloseFill} from 'react-icons/ri';
 import {BsHeart} from 'react-icons/bs';
 import img2 from '../../Images/img2.jpg';
 import styles from './CartView.module.css';
+import { useState } from 'react';
 
-export default function CartView(){
+export default function CartView({product}){
+    const [count, setCount] = useState(1);
+
   return (
     <div className={styles.th}>
       <div style={{display:"flex"}}>
           <div style={{marginRight:"20px"}}>
-              <img src={img2} width="60px"/>
+              <img src={product.images[0]} width="60px"/>
           </div>
           <div>
               <div>
-                  <p>Pelvic Red Loafers</p>
-                  <p>Colour: Red | Size: 10</p>
+                  <p>{product.title}</p>
+                  <p>Colour: Default | Size: {product.sizes}</p>
               </div>
 
               <div style={{display:"flex"}}>
@@ -23,16 +26,16 @@ export default function CartView(){
           </div>
           
       </div>
-      <div>Rs. 319</div>
+      <div>Rs. {product.discounted_price}</div>
       <div>
-          <select>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+          <select onChange={(e) => setCount(e.currentTarget.value)}>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
           </select>
       </div>
       <div>Check availability and delivery charges for your pincode</div>
-      <div>Rs. 319</div>
+      <div>Rs. {product.discounted_price * count}</div>
   </div>
   )
 }

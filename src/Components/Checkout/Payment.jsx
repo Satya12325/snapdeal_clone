@@ -1,16 +1,15 @@
 import * as React from 'react';
 import {TiTick} from 'react-icons/ti';
 import {RiCloseFill} from 'react-icons/ri';
-import {BsHeart} from 'react-icons/bs';
 import styles from './Payment.module.css';
 import img2 from '../../Images/img2.jpg';
-import info from '../../Images/footer.png';
 import styled from 'styled-components';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CartView from './CartView';
 import { CartProvider } from '../../Context/CartContextProvider';
+import axios from 'axios';
 
 const style = {
   position: 'absolute',
@@ -36,8 +35,25 @@ export default function Payment(){
     let {cartProduct} = React.useContext(CartProvider);
     const [popup, setPopup] = useState(true);
     const [open, setOpen] = React.useState(false);
+    const [cart, setCart] = React.useState([]);
+    const [totalRs, setTotalRs] = React.useState(0);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    React.useEffect( () => {
+        axios.get('https://meesho-db.herokuapp.com/cart')
+        .then(res => cartHandler(res.data))
+        .catch(err => console.log(err));
+    })
+
+    const cartHandler = (data) => {
+        let totalPrice = 0;
+        for(let item of data){
+            totalPrice += item.discounted_price;
+        }
+        setTotalRs(totalPrice);
+        setCart(data)
+    }
  
     return(
         <>
@@ -53,15 +69,15 @@ export default function Payment(){
 
                     <div className={styles.cart}>
                         <div >
-                            <img src={img2} alt="cart" width="70%"/>
+                            <img src={cartProduct.images[0]} alt="cart" width="70%"/>
                         </div>
                         <div>
-                            <p className={styles.heading}>Pelvic Red Loafers</p>
-                            <p>Rs. 319</p>
+                            <p className={styles.heading}>{cartProduct.title}</p>
+                            <p>Rs. {cartProduct.discounted_price}</p>
                         </div>
                         <div>
-                            <p className={styles.heading}>Your Order <span className={styles.items}>2 Items</span></p>
-                            <h2 className={styles.value}>You Pay : <span style={{color:"black"}}>Rs. 608</span></h2>
+                            <p className={styles.heading}>Your Order <span className={styles.items}>{cart.length} Items</span></p>
+                            <h2 className={styles.value}>You Pay : <span style={{color:"black"}}>Rs. {totalRs}</span></h2>
                             <p className={styles.view}>(Including delivery and other charges. View Cart for details)</p>
                         </div>
 
@@ -72,7 +88,6 @@ export default function Payment(){
                     </div>
 
                 </div>
-                <img src={info} alt="footer" />
 
                 <Modal
                     open={open}
@@ -99,7 +114,10 @@ export default function Payment(){
                                 <div>Subtotal</div>
                             </div>
 
-                            <CartView/>
+                            {
+                                cart.map( (item, ind) => (<CartView product={item} key={ind}/>) )
+                            }
+                            
                         </div>
 
                         <div className={styles.footer}>
@@ -109,11 +127,11 @@ export default function Payment(){
                                 <p>100% Payment Protection, Easy Returns Policy</p>
                             </div>
                             <div>
-                                <div style={{display: "flex"}}><div>Sub Total: </div><div style={{marginLeft:"auto"}}>Rs. 319</div></div>
+                                <div style={{display: "flex"}}><div>Sub Total: </div><div style={{marginLeft:"auto"}}>Rs. {totalRs}</div></div>
                                 <div style={{display: "flex"}}><div>Delivery Charges: </div><div style={{marginLeft:"auto", color:"rgb(21, 228, 107)"}}>FREE</div></div>
                       
                             </div>
-                            <div>PROCEED TO PAY Rs. 319</div>
+                            <div>PROCEED TO PAY Rs. {totalRs}</div>
                         </div>
                         
                     </Box>
