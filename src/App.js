@@ -9,16 +9,16 @@ import Payment from './Components/Checkout/Payment';
 function App() {
   return (
     <div className="App">
-     {/* <TopNav/>
+     <TopNav/>
      <Navbar/>
      <div style={{marginTop:"38px"}}></div>
-     <AllpageRout/> */}
+     <AllpageRout/> 
      {/* <div style={{marginTop:"50px",backgroundColor:"red"}}>
      <SignUpBtn/>
      </div> */}
-     {/* <div style={{height:"150vh"}}></div> */}
+     {/* <div style={{height:"150vh"}}></div>
      {/* <AddToCart/> */}
-     <Payment/>
+     {/* <Payment/> */}
     </div>
   );
 }

@@ -6,14 +6,14 @@ import Typography from '@mui/material/Typography';
 
 
 
-export default function Cards({value,image,title,price,d_price,discount}){
+export default function Cards({value,image,title,price,d_price,discount, meta, handleProduct}){
 
     
 
 
     return(
         <>
-        <div className="cards">
+        <div className="cards" onClick={() => handleProduct(meta)}>
             <div style={{ width: "100%",height: "70%"}}>
                 <img style={{ width:"90%",margin:"10px",height:"90%"}}src={image} alt="" />
             </div>

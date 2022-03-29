@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Cards from './Cards'
 import {useSelector,useDispatch,shallowEqual} from "react-redux";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {useEffect} from "react";
 import {getProductRequest,getProduct} from "../../Redux/Allproduct/action";
 import axios from 'axios';
-import {getmensProduct} from '../../Server/Apis'
+import {getmensProduct} from '../../Server/Apis';
+import { CartProvider } from '../../Context/CartContextProvider';
 
 
 export const CardScorlling = () => {
     const dispatch = useDispatch();
+    let {setCartProduct} = useContext(CartProvider);
+    let navigate = useNavigate();
 
     const {product,isLooding} = useSelector(
         (state) => state.app,
@@ -67,6 +70,12 @@ export const CardScorlling = () => {
           items: 2
         }
       };
+
+      const handleProduct = (product) => {
+        setCartProduct(product);
+        navigate('/product_details');
+
+      }
   return (
     <div>
         <div>       
@@ -81,6 +90,7 @@ export const CardScorlling = () => {
         {
             product?.map((item)=>(
                 <Cards
+                    meta={item}
                     key={item._id}
                     image={item.images[0]}
                     title={item.title}
@@ -88,6 +98,7 @@ export const CardScorlling = () => {
                     d_price={item.discounted_price}
                     discount={Math.floor(item.discounted_price/item.original_price*100)}
                     value={item.rating}
+                    handleProduct={handleProduct}
                 />
             ))
         }

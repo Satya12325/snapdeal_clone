@@ -1,14 +1,71 @@
+import * as React from 'react';
+import axios from 'axios';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import Cards from '../Home/Cards'
 import styles from './AddToCart.module.css';
-import {BsHeart} from 'react-icons/bs';
+import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
 import {ImPriceTag} from 'react-icons/im'
 import ProductImg from './ProductImg';
-import img2 from '../../Images/img2.jpg';
-import snapdeal from '../../Images/snapdeal.png'
+import snapdeal from '../../Images/snapdeal.png';
+import Rating from '@mui/material/Rating';
+import {useNavigate} from "react-router-dom"
+import { CartProvider } from '../../Context/CartContextProvider';
+
+
 export default function AddToCart(){
+    const [suggested, setSuggested] = React.useState([]);
+    const [liked, setLiked] = React.useState(false);
+    let {cartProduct,setCartProduct} = React.useContext(CartProvider);
+    let navigate = useNavigate();
+
+    let categoryPath = {"Sarees":"Women_Ethnic", "Mens Top Were":"Men", "Beauty and health":"Beauty_Products",
+                        "Dresses":"Women_Western", "Jewellery":"Jewellery", "Bags and Footwear":"Bags_Footwear",
+                        "Home and Kitchen":"Home_Kitchen", "Kids ":"Kids", "Electronics":"Electronics"}
+
+    console.log("Product view = ", cartProduct)
+
+    React.useEffect( () => {
+        let path = categoryPath[cartProduct.category]
+        axios.get(`https://meesho-db.herokuapp.com/${path}`)
+        .then( res => setSuggested(res.data))
+        .catch(err => console.log(err))
+    }, [cartProduct])
+
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 4
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 4
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 3
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 2
+        }
+      };
+
+      const addToCart = (product) => {
+        axios.post('https://meesho-db.herokuapp.com/cart', product)
+        .then(res => navigate('/cart_view'))
+        .catch(err => console.log(err))
+      }
+      const handleProduct = (product) => {
+        setCartProduct(product);
+        navigate('/product_details');
+      }
+
     return (
         <>
             <div className={styles.main}>
-                <div className={styles.cont}>
+                {/* <div className={styles.cont}>
                    <div>
                         <ProductImg/>
                    </div>
@@ -17,6 +74,12 @@ export default function AddToCart(){
                         <div className={styles.heading}>
                             <div>
                                 <p>Veirdo - 100% Cotton Regular Fit Green Men's T-Shirt ( Pack of 1 )</p>
+                                <div >
+                                    <Rating name="read-only" value={value} readOnly sx={{'font-size':'1rem'}}/>
+                                    <span style={{marginLeft: "1rem", marginTop:"0"}}>({value})</span>
+                                </div>
+                                    
+
                             </div>
                             <div>
                                 <div style={{paddingTop:"1.3rem"}}><BsHeart size="1.2rem" style={{cursor:"pointer"}}/></div>                     
@@ -96,31 +159,41 @@ export default function AddToCart(){
                         </div>
 
                     </div>
-                </div>
+                </div> */}
 
 
 
-{/* 
+
                 <div className={styles.cont}>
                    <div>
-                        <ProductImg imgArr={product.images}/>
+                        <ProductImg imgArr={cartProduct.images}/>
                    </div>
                 
                     <div>
                         <div className={styles.heading}>
                             <div>
-                                <p>{product.title}</p>
+                                <p>{cartProduct.title}</p>
+                                <div style={{display:"flex"}} className={styles.headingMeta}>
+                                    <Rating name="read-only" value={cartProduct.rating} readOnly sx={{'font-size':'1rem'}}/>
+                                    <span style={{marginLeft: "0.5rem", marginTop:"0"}}>({cartProduct.rating})</span>
+                                    <p>5579 Rating</p> | 
+                                    <p>117 Reviews</p> | 
+                                    <p>14 Selfies</p> | 
+                                    <p>Have a question?</p>
+                                </div>
                             </div>
                             <div>
-                                <div style={{paddingTop:"1.3rem"}}><BsHeart size="1.2rem" style={{cursor:"pointer"}}/></div>                     
+                                <div style={{paddingTop:"1.3rem"}}>
+                                    {liked ? <AiFillHeart size="1.5rem" style={{cursor:"pointer"}} color="red" onClick={() => setLiked(false)}/> : <AiOutlineHeart size="1.5rem" style={{cursor:"pointer"}} onClick={() => setLiked(true)}/>}
+                                </div>                     
                             </div>          
                         </div>
 
                         <div className={styles.info}>
                             <div className={styles.price}>
                                 <div>
-                                    <p>MRP <span style={{textDecoration: "line-through"}}>Rs. {product.original_price}</span> (Inclusive of all taxes)</p>
-                                    <div style={{display: "flex"}}><p style={{color:"red", fontSize: "1.6rem", marginRight:"1rem"}}>Rs. {product.discounted_price}</p>
+                                    <p>MRP <span style={{textDecoration: "line-through"}}>Rs. {cartProduct.original_price}</span> (Inclusive of all taxes)</p>
+                                    <div style={{display: "flex"}}><p style={{color:"red", fontSize: "1.6rem", marginRight:"1rem"}}>Rs. {cartProduct.discounted_price}</p>
                                     <span className={styles.dis}>74% OFF</span></div>
                                 </div>
 
@@ -148,7 +221,7 @@ export default function AddToCart(){
                             <div className={styles.colorDiv}>
                                 <div>Color</div>
                                 <div className={styles.imgCont}>
-                                    <div> <img src={product.images[0]} /></div>
+                                    <div> <img src={cartProduct.images[0]} /></div>
                                 </div>
 
                             </div>
@@ -157,14 +230,14 @@ export default function AddToCart(){
                                 <div>Size</div>
                                 <div>
                                     {
-                                        product.sizes.map( (ele, ind) => (<div key={ind}>{ele}</div> ))
+                                        cartProduct.sizes.map( (ele, ind) => (<div key={ind}>{ele}</div> ))
                                     }
         
                                 </div>
                             </div>
 
                             <div className={styles.btnDiv}>
-                                <div className={styles.btn}>ADD TO CART</div>
+                                <div className={styles.btn} onClick={() => addToCart(cartProduct)}>ADD TO CART</div>
                                 <div>
                                     <div>
                                         <div className={styles.icon}><img src={snapdeal} width="25px"/></div>
@@ -189,22 +262,37 @@ export default function AddToCart(){
                         </div>
 
                     </div>
-                </div> */}
+                </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-                <div className={styles.cont} style={{marginTop: "5rem"}}>
-
+                <div className={styles.suggestions}>
+                    <p>You May Also Like</p>
+                    <div style={{ width: "90%",margin: "auto"}}>       
+                        <Carousel responsive={responsive} 
+                        infinite={true}  
+                        containerClass="carousel-container"
+                        itemClass="carousel-item-padding-40-px"
+                        focusOnSelect={true}
+                        autoPlay={false}
+                        autoPlaySpeed={10000}
+                        >
+                        {
+                            suggested?.map((item)=>(
+                                <Cards
+                                    meta={item}
+                                    key={item._id}
+                                    image={item.images[0]}
+                                    title={item.title}
+                                    price={item.original_price}
+                                    d_price={item.discounted_price}
+                                    discount={Math.floor(item.discounted_price/item.original_price*100)}
+                                    value={item.rating}
+                                    handleProduct={handleProduct}
+                                />
+                            ))
+                        }
+                        </Carousel>
+                    </div> 
                 </div>
             </div>
         </>

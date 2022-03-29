@@ -10,6 +10,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CartView from './CartView';
+import { CartProvider } from '../../Context/CartContextProvider';
 
 const style = {
   position: 'absolute',
@@ -32,11 +33,12 @@ const Notification = styled.div`
     width: 100%;
 `
 export default function Payment(){
+    let {cartProduct} = React.useContext(CartProvider);
     const [popup, setPopup] = useState(true);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    console.log(popup)
+ 
     return(
         <>
             <div className={styles.main}>
@@ -44,7 +46,7 @@ export default function Payment(){
                     <Notification show={popup} className={styles.notif}>
                         <div><TiTick/></div>
                         <div>
-                            <h4 className={styles.h4}> Pelvic Red Loafers is already present in your cart. Please make use of the quantity field to increase quantity.</h4>
+                            <h4 className={styles.h4}> {cartProduct.title} added to your cart.</h4>
                         </div>
                         <div onClick={() => setPopup(false)}><RiCloseFill/></div>
                     </Notification>

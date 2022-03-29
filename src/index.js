@@ -5,16 +5,18 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
 import {Provider} from "react-redux";
 import {store} from "./Redux/store";
-
+import CartContextProvider from './Context/CartContextProvider';
 
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <CartContextProvider>
     <Provider store={store}>
     <App />
     </Provider>
+    </CartContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
