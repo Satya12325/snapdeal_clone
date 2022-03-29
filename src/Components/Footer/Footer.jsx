@@ -36,7 +36,7 @@ export const Footer = () => {
           <p className={styles.insideflexfonthead}>HELP CENTER</p>
           <p className={styles.insideflexfontbody}>
             Got a question? Look no further. <br />
-            Browse our FAQs or submit your query here.
+            Browse or submit your query here.
           </p>
         </div>
         <div className={styles.insideflex}>

@@ -3,66 +3,72 @@ import styles from "./HomeSidebar.module.css";
 
 export const HomeSidebar = () => {
   return (
-    <div className={styles.sidemenu}>
+    <div className={styles.topContent}>
+        <div className={styles.sidemenu}>
             <ul className={styles.navarea}>
-                <p className={styles.sidebarheading}>TOP CATEGORIES</p>
+                <p className={styles.sidebarheading} >TOP CATEGORIES</p>
                 <li><a href="#">
-                        <span className={styles.insidesidebarmain}><img src="images/discount.png" width="28px" /></span>
+                        <span className={styles.insidesidebarmain}><img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30mobile4.png" width="28px" /></span>
+
                         <span className={styles.insidesidebarmain2}>
-                            <p className={styles.in}>All Offers</p>
+                            <p className={styles.in}>Men's Fashion</p>
                         </span></a>
 
                     <div className={styles.subnav}>
                         <div className={styles.submenu}>
                             <div>
-                                <p className={styles.submenup}><span className={styles.submenuphead}>SUMMER ESSENTIALS</span><br/>
-                                    AC Blankets<br/>
-                                    Air Conditioners<br/>
-                                    Refrigerators<br/>
-                                    Fans<br/>
-                                    Air Coolers<br/>
-                                    Ice trays<br/>
-                                    Juicers<br/>
-                                    Water Bottles<br/>
-                                    Hair Dryers<br/>
-                                    Chillers & Water Coolers<br/>
+                                <p className={styles.submenup}><span className={styles.submenuphead}>FOOTWEAR</span><br/>
+                                    Sports Shoes<br/>
+                                    Casual Shoes<br/>
+                                    Slippers & Flip Flops<br/>
+                                    Sandals & Floaters<br/>
+                                    Formal Shoes<br/>
+                                    Loafers<br/>
+                                    Sneakers<br/>
+                                    Ethnic Footwear<br/>
+                                    Show Accessories<br/>
+                                    <span className={styles.viewall}>View All &gt;</span>
                                     <br/>
-                                    <span className={styles.submenuphead}>SUMMER CARE</span><br/>
-                                    Sunscreens<br/>
-                                    Face Wash & Cleansers<br/>
-                                    Wipes<br/>
-                                    Hats<br/>
-                                    Sunglasses<br/>
-                                    Umbrellas<br/>
-                                    Mosquito Nets
+                                    <br/>
+                                    <span className={styles.submenuphead}>BAGS & LUGGAGE</span><br/>
+                                    Backpacks<br/>
+                                    Laptop Bags<br/>
+                                    Hiking Bags<br/>
+                                    Luggage & Suitcases<br/>
+                                    Travel Accessories<br/>
+                                    Office Bags<br/>
+                                    <span className={styles.viewall}>View All &gt;</span>
+                                    <br />
                                 </p>
                             </div>
                         </div>
 
-                        <div className={styles.sub-menu}>
+                        <div className={styles.submenu}>
                             <div>
-                                <p className={styles.submenup}><span className={styles.submenuphead}>MEN'S SUMMER FASHION</span><br/>
+                                <p className={styles.submenup}><span className={styles.submenuphead}>CLOTHING</span><br/>
 
-                                    T-shirt Store<br/>
+                                    T-shirt Polos<br/>
                                     Half Sleeve Shirts<br/>
-                                    Shorts & 3/4ths<br/>
-                                    Flip Flops<br/>
-                                    Sandals<br/>
-                                    Casual Shoes<br/>
-                                    <br/>
-                                    <span className={styles.submenuphead}>WOMEN'S SUMMER FASHION</span><br/>
-                                    Kurtis<br/>
-                                    Dresses<br/>
-                                    Tops & Tunics<br/>
+                                    Shirts<br/>
+                                    Jeans<br/>
+                                    Trousers & Chinos<br/>
                                     Innerwear & Sleepwear<br/>
-                                    Flats<br/>
-                                    Slippers<br/>
+                                    <span className={styles.viewall}>View All &gt;</span>
                                     <br/>
-                                    <span className={styles.submenuphead}>KIDS' FASHION</span><br/>
-                                    Boy's Kurta Pyjama<br/>
-                                    Girl's Lehenga Cholis<br/>
-                                    Top & Bottom Sets<br/>
-                                    Ethnic Gowns
+                                    <br />
+                                    <span className={styles.submenuphead}>WINTER WEAR</span><br/>
+                                    Jackets<br/>
+                                    Sweatshirts<br/>
+                                    Sweaters<br/>
+                                    Thermals<br/>
+
+                                    <br/>
+                                    <br />
+                                    <span className={styles.submenuphead}>SPORTSWEAR</span><br/>
+                                    T-Shirts & Polos<br/>
+                                    Trackpants & Tracksuits<br/>
+                                    <span className={styles.viewall}>View All &gt;</span>
+                                    <br />
                                 </p>
                             </div>
                         </div>
@@ -93,15 +99,15 @@ export const HomeSidebar = () => {
                         </div>
                         <div className={styles.submenu}>
                             <div>
-                                <img src="https://n4.sdlcdn.com/imgs/i/f/f/BlockbusterDeals-cb277.jpg" />
+                                <img src="https://n4.sdlcdn.com/imgs/i/1/o/MF-05994.jpg" />
                             </div>
                         </div>
                     </div>
                 </li>
                 <li className={styles.sidebarmain}><a href="">
-                        <span className={styles.insidesidebarmain}><img src="images/smartphone.png" width="28px" /></span>
+                        <span className={styles.insidesidebarmain}><img src="https://i2.sdlcdn.com/img/leftnavicon09/30x30home_living2.png" width="28px" /></span>
                         <span className={styles.insidesidebarmain2}>
-                            <p className={styles.in}>Mobile & Tablets</p>
+                            <p className={styles.in}>Women's Fashion</p>
                         </span></a>
 
                     <div className={styles.subnav}>
@@ -137,7 +143,7 @@ export const HomeSidebar = () => {
 
                         <div className={styles.submenu}>
                             <div>
-                                <p className={styles.submenup}<span className={styles.submenuphead}>MOBILE ACCESSORIES</span><br/>
+                                <p className={styles.submenup}><span className={styles.submenuphead}> MOBILE ACCESSORIES</span><br/>
                                     Batteries<br/>
                                     Screen Guards<br/>
                                     Cables & Chargers<br/>
@@ -164,7 +170,7 @@ export const HomeSidebar = () => {
                             </div>
                         </div>
 
-                        <div className={styles.sub-menu}>
+                        <div className={styles.submenu}>
                             <div>
                                 <p className={styles.submenup}><span className={styles.submenuphead}>FEATURED STORES</span><br/>
                                     POPULAR SMARTPHONES
@@ -196,15 +202,15 @@ export const HomeSidebar = () => {
                         </div>
                         <div className={styles.submenu}>
                             <div>
-                                <img src="https://n2.sdlcdn.com/imgs/i/7/q/Mobiles_17jan-197ca.jpg" />
+                                <img src="https://n1.sdlcdn.com/imgs/i/n/g/MS_WomenWatches_LeftNav1Aug-e15a1.jpg" />
                             </div>
                         </div>
                     </div>
                 </li>
                 <li className={styles.sidebarmain}><a href="">
-                        <span className={styles.insidesidebarmain}><img src="images/fridge.png" width="28px"/></span>
+                        <span className={styles.insidesidebarmain}><img src="https://n2.sdlcdn.com/imgs/c/0/x/Homekitchenfurnishing-3eda1.jpg" width="28px"/></span>
                         <span className={styles.insidesidebarmain2}>
-                            <p className={styles.in}>Electronics</p>
+                            <p className={styles.in}>Home & Kitchen</p>
                         </span></a>
 
                     <div className={styles.subnav}>
@@ -296,9 +302,9 @@ export const HomeSidebar = () => {
                     </div>
                 </li>
                 <li className={styles.sidebarmain}><a href="">
-                        <span className={styles.insidesidebarmain}><img src="images/quantum-computing.png" width="28px" /></span>
+                        <span className={styles.insidesidebarmain}><img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30music1.png" width="28px" /></span>
                         <span className={styles.insidesidebarmain2}>
-                            <p className={styles.in}>Computer & Gaming</p>
+                            <p className={styles.in}>Toys, Kids'Fashion</p>
                         </span></a>
 
                     <div className={styles.subnav}>
@@ -309,7 +315,7 @@ export const HomeSidebar = () => {
                                     Core i5/i7 Laptops<br/>
                                     Budget Laptops<br/>
                                     Thin & Light Laptops<br/>
-                                    <span className={styles.viewall}><a href="category_product_page.html" style="color: #337ab7; padding-left: 1px;">View All &gt;</a></span><br/>
+                                    <span className={styles.viewall}><a href="category_product_page.html" style={{color: "#337ab7", paddingLeft: "1px"}}>View All &gt;</a></span><br/>
                                     <br/>
                                     <span className={styles.submenuphead}>PRINTERS & INKS</span><br/>
                                     Printers<br/>
@@ -401,9 +407,10 @@ export const HomeSidebar = () => {
                     </div>
                 </li>
                 <li className={styles.sidebarmain}><a href="#">
-                        <span className={styles.insidesidebarmain}><img src="images/kitchen-tools.png" width="28px" /></span>
+                        <span className={styles.insidesidebarmain}><img src="https://i1.sdlcdn.com/img/leftnavicon09/fashion30x30_3.png" width="28px" /></span>
                         <span className={styles.insidesidebarmain2}>
-                            <p className={styles.in}>Home & Kitchen</p>
+                            <p className={styles.in}>Beauty & Health</p>
+
                         </span></a>
 
                     <div className={styles.subnav}>
@@ -470,7 +477,7 @@ export const HomeSidebar = () => {
 
                         <div className={styles.submenu}>
                             <div>
-                                <p className={styles.submenup}><span className={styles.sub-menu-phead">FEATURED STORES</span><br/>
+                                <p className={styles.submenup}><span className={styles.submenuphead}>FEATURED STORES</span><br/>
                                     HOME IMPROVEMENT<br/>
                                     Home Utility<br/>
                                     Cleaning Mops<br/>
@@ -480,7 +487,7 @@ export const HomeSidebar = () => {
                                     Laundry Accessories<br/>
                                     <span className={styles.viewall}>View All &gt;</span><br/>
                                     <br/>
-                                    <span className={styles.sub-menuphead}>TOOLS & HARDWARE</span><br/>
+                                    <span className={styles.submenuphead}>TOOLS & HARDWARE</span><br/>
                                     Power & Hand Tools<br/>
                                     Bathroom Accessories<br/>
                                     Electrical<br/>
@@ -507,27 +514,26 @@ export const HomeSidebar = () => {
                 </li>
 
                 <p className={styles.sidebarheading}>MORE CATEGORIES</p>
-                <li><a href="">Men's Fashion</a></li>
-                <li><a href="">Women's Fashion</a></li>
-                <li><a href="">Toy's Kids' Fashion & more</a></li>
-                <li><a href="">Beauty,Health & Daily Needs</a></li>
+                <li><a href="">Automotives</a></li>
+                <li><a href="">Mobile & Accessories</a></li>
+                <li><a href="">Electronics</a></li>
                 <li><a href="">Sports, Fitness & Outdoor</a></li>
-                <li><a href="">Car & Motorbike</a></li>
-                <li><a href="">Hobbies</a></li>
+                <li><a href="">Computers & Gaming</a></li>
                 <li><a href="">Books,Media & Music</a></li>
-                <li><a href="">See All Categories</a></li>
+                <li><a href="">Hobbies</a></li>
                 <p className={styles.sidebarheading}>TRENDING SEARCHES</p>
-                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>search</span><span>&nbsp; Men
-                            Watch</span></a></p>
-                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>search</span><span>&nbsp;
+                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>&#128269;</span><span>&nbsp; Boy Tshirts
+                            </span></a></p>
+                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>&#128269;</span><span>&nbsp;
                             Slipper</span></a></p>
-                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>search</span><span>&nbsp; Jacket
-                            Men</span></a></p>
-                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>search</span><span>&nbsp; Mens
-                            Shirt</span></a></p>
-                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>search</span><span>&nbsp;
-                            Torch</span></a></p>
+                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>&#128269;</span><span>&nbsp; Watch
+                            Women</span></a></p>
+                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>&#128269;</span><span>&nbsp; Anarkali
+                            Kurti Women</span></a></p>
+                <p className={styles.sidebarnohover}><a href=""><span className={styles.materialicons}>&#128269;</span><span>&nbsp;
+                            Nighty</span></a></p>
             </ul>
         </div>
+    </div>
   )
 }

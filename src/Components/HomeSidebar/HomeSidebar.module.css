@@ -1,3 +1,20 @@
+.topContent {
+    display: grid;
+    grid-template-columns: 200px 882px 230px;
+    grid-template-areas:
+        "a b c"
+        "a d d";
+    gap: 15px;
+    max-width: 1402px;
+    margin: 50px auto;
+}
+.topContent>div {
+    /* min-height: 500px; */
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgb(243, 243, 243);
+    border: 1px solid rgb(212, 212, 212);
+}
 .sidemenu ul li {
     list-style-type: none;
 }
@@ -15,18 +32,6 @@
     border-radius: 3px;
     grid-row: 1/ 4;
     box-shadow: 0 10px 20px 5px rgba(167, 165, 165, 0.253);
-}
-
-.sliders {
-    background-color: rgb(211, 211, 211);
-    border: 1px solid grey;
-    border-radius: 3px;
-}
-
-.logincard {
-    background-color: rgb(211, 211, 211);
-    border: 1px solid grey;
-    border-radius: 3px;
 }
 
 .recentproduct-heading {
@@ -49,9 +54,10 @@
 .sidebarheading {
     font-size: 12px;
     color: #333333;
-    font-weight: 600;
+    font-weight: 540;
     margin-left: 10px;
     margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 .navarea {
@@ -100,7 +106,7 @@
     border-top-left-radius: 2px;
 }
 
-.navarea>li>.sub-nav {
+.navarea>li>.subnav {
     list-style: none;
     top: 0;
     left: 190px;
@@ -178,6 +184,7 @@
 .materialicons {
     font-size: 11px;
     color: rgb(180, 180, 180);
+
 }
 
 .in {
@@ -191,3 +198,4 @@
 .sidebarnohover {
     font-size: 12px;
 }
+
