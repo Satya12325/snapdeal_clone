@@ -8,6 +8,7 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SignUpBtn from "./SignUpBtn";
+import {Link} from "react-router-dom";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -45,10 +46,10 @@ export default function Nevbar() {
       >
         <div className={style.container}>
           <div>
-            <img
+           <Link to={"/"}> <img
               src="https://i3.sdlcdn.com/img/snapdeal/darwin/logo/sdLatestLogo.svg"
               alt="Logo"
-            />
+            /></Link>
           </div>
           <div style={{width:"50%"}}>
             <div className="input-group mb-3 border-0">

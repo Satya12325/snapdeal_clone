@@ -7,3 +7,10 @@ export const getmensProduct = () => {
 export const getbeautyProduct = () => {
     return api.get("/beautyProducts/")
 }
+
+export const getCartProduct = () => {
+    return api.get("/cartProducts/")
+}
+export const getmensProductId = (id) => {
+    return api.get(`/men/${id}`)
+}

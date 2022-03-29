@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Cards from './Cards'
+import Cards from './Cards';
 import {useSelector,useDispatch,shallowEqual} from "react-redux";
 import {Link} from "react-router-dom"
 import {useEffect} from "react";
@@ -80,15 +80,17 @@ export const CardScorlling = () => {
          >
         {
             product?.map((item)=>(
+              <Link to={`/product/${item._id}`} style={{textDecoration:"none",color:"black"}}>
                 <Cards
                     key={item._id}
                     image={item.images[0]}
                     title={item.title}
                     price={item.original_price}
                     d_price={item.discounted_price}
-                    discount={Math.floor(item.discounted_price/item.original_price*100)}
+                    discount={Math.floor((item.original_price-item.discounted_price)/item.original_price*100)}
                     value={item.rating}
                 />
+                </Link>
             ))
         }
         {/* <Cards

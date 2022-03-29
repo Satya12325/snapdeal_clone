@@ -80,7 +80,7 @@ export const BestsellerScorlling = () => {
                     title={item.title}
                     price={item.original_price}
                     d_price={item.discounted_price}
-                    discount={Math.floor(item.discounted_price/item.original_price*100)}
+                    discount={Math.floor((item.original_price-item.discounted_price)/item.original_price*100)}
                     value={item.rating}
                 />
             ))

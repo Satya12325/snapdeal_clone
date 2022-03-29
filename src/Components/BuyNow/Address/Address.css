@@ -1,0 +1,23 @@
+.address{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    margin: 50px;
+}
+.address-container{
+    width: 70%;
+}
+.adrs{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    margin: 15px;
+    padding-left: 10px;
+}
+.save-btn{
+    border-radius: 3px;
+    border: 0;
+    padding: 10px 18px;
+    background-color: #DA1141;
+    color: #fff;
+}

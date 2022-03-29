@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #four-flex {
+            background-color: #ffffff;
+            border-top: 1px solid #e2e2e2;
+            border-bottom: 1px solid #e2e2e2;
+            padding: 0% 5%;
+            display: flex;
+
+        }
+
+        .inside-flex {
+            flex-basis: 23%;
+            border-right: 1px solid #e2e2e2;
+            border-left: 1px solid #e2e2e2;
+            padding: 45px 25px 0px;
+            height: 180px;
+            text-align: center;
+        }
+
+        .inside-flex-fonthead {
+            font-weight: normal;
+            font-size: 17.2px;
+            color: #4e4e4e;
+        }
+
+        .inside-flex-fontbody {
+            font-size: 13.2px;
+            color: #a4a3a3;
+            line-height: 1.7;
+        }
+
+        #footer {
+            border-bottom: 1px solid #e2e2e2;
+            background-color: #ffffff;
+            padding: 3% 5%;
+            display: flex;
+        }
+
+        #footer>div:nth-child(1) {
+            flex-basis: 20%;
+        }
+
+        #footer>div:nth-child(2) {
+            flex-basis: 15%;
+        }
+
+        #footer>div:nth-child(3) {
+            flex-basis: 20%;
+        }
+
+        #footer>div:nth-child(4) {
+            flex-basis: 17%;
+        }
+
+        .subs-box {
+            display: flex;
+        }
+
+        #sub-text {
+            height: 37px;
+            font-size: 13px;
+            color: #999;
+            border: none;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background-color: #f7f8fa;
+            padding-left: 10px;
+        }
+
+        #sub-button {
+            background-color: black;
+            color: #ffffff;
+            border: none;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .footer-fonthead {
+            font-size: 15px;
+            font-weight: 400;
+            color: #25363b;
+        }
+
+        #paymentconnect {
+            display: flex;
+            padding: 10px 5% 20px;
+            background-color: #ffffff;
+        }
+
+        #paymentconnect>div:nth-child(1) {
+            flex-basis: 40%;
+        }
+
+        .paymentconnect-fonthead {
+            font-weight: 300;
+        }
+
+        #connecticons {
+            display: flex;
+        }
+
+        #connecticons>div:nth-child(even) {
+            padding: 0px 25px;
+        }
+
+        #footer-description {
+            padding: 1.5% 5%;
+        }
+
+        .footer-desfont {
+            font-size: 13.5px;
+            color: #777;
+            line-height: 1.7;
+        }
+
+        #aboutsnap {
+            padding-top: 1%;
+            font-size: 18px;
+            font-weight: bold;
+            color: #344c55;
+        }
+
+        #lastfooter {
+            display: flex;
+            background-color: #ffffff;
+            padding: .5% 5%;
+        }
+
+        #lastfooter>div:nth-child(1) {
+            flex-basis: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div id="four-flex">
+        <div class="inside-flex">
+            <div class="icons">
+                <img src="/lock.png" height="50px">
+            </div>
+            <p class="inside-flex-fonthead">100% SECURE PAYMENTS</p>
+            <p class="inside-flex-fontbody">Moving your card details to a much more<br>secured place</p>
+        </div>
+        <div class="inside-flex">
+            <div class="icons">
+                <img src="/secure.png" height="50px">
+            </div>
+            <p class="inside-flex-fonthead">TRUSTPAY</p>
+            <p class="inside-flex-fontbody">100% Payment Protection. Easy <br>Return Policy</p>
+        </div>
+        <div class="inside-flex">
+            <div class="icons">
+                <img src="/help.png" height="50px">
+            </div>
+            <p class="inside-flex-fonthead">HELP CENTER</p>
+            <p class="inside-flex-fontbody">Got a question? Look no further. <br>Browse our FAQs or submit your query
+                here.</p>
+        </div>
+        <div class="inside-flex">
+            <div class="icons">
+                <img src="/shop.png" height="50px">
+            </div>
+            <p class="inside-flex-fonthead">SHOP ON THE GO</p>
+            <p class="inside-flex-fontbody">Download the app and get exciting <br>app only offers at your fingertips</p>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div>
+            <p class="footer-fonthead">POLICY INFO</p>
+            <p class="inside-flex-fontbody">Privay Policy <br>
+                Terms of Sale <br>
+                Terms of USe <br>
+                Report Abuse & Tkedown Policy</p>
+        </div>
+        <div>
+            <p class="footer-fonthead">COMPANY</p>
+            <p class="inside-flex-fontbody">About Us <br>
+                Core Values <br>
+                Careers <br>
+                Blog <br>
+                Sitemap</p>
+        </div>
+        <div>
+            <p class="footer-fonthead">SNAPDEAL BUSINESS</p>
+            <p class="inside-flex-fontbody">Shopping App <br>
+                Sell on Snapdeal <br>
+                Advertise on Snapdeal <br>
+                Media Enquiries <br>
+                Be an Affiliate</p>
+        </div>
+        <div>
+            <p class="footer-fonthead">NEED HELP ?</p>
+            <p class="inside-flex-fontbody">FAQ <br>
+                Contact Us <br>
+                Online Shopping</p>
+        </div>
+        <div>
+            <p class="footer-fonthead">SUBSCRIBE</p>
+            <div class="subs-box">
+                <input type="text" id="sub-text" placeholder="Your email address">
+                <input type="button" id="sub-button" value="SUBSCRIBE">
+            </div>
+            <p class="inside-flex-fontbody">Register now to get updates on promotions and <br>
+                coupons.Or Download App</p>
+        </div>
+    </div>
+
+    <div id="paymentconnect">
+        <div>
+            <p class="paymentconnect-fonthead">PAYMENT</p>
+            <div>
+                <img src="/paymenticons.png" height="35px">
+            </div>
+        </div>
+        <div>
+            <p>CONNECT</p>
+            <div id="connecticons">
+                <div>
+                    <img src="/facebook.png" height="30px">
+                </div>
+                <div>
+                    <img src="/twitter.png" height="30px">
+                </div>
+                <div>
+                    <img src="/youtube.png" height="30px">
+                </div>
+                <div>
+                    <img src="/instagram.png" height="30px">
+                </div>
+                <div>
+                    <img src="/pinterest.png" height="30px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-description">
+        <p class="footer-desfont">Mobiles: 4G Mobiles / Smartphones / Samsung Mobiles / Micromax Mobiles / Lenovo
+            Mobiles / iPhones / Vivo Mobiles / Oppo Mobiles / Intex Mobiles / Asus Mobiles <br>
+            Mobiles Accessories: Mobile Covers / Leather Mobile Covers / Printed Back Covers / 10000mAh Power Banks /
+            Ambrane Power Banks / Intex Power Banks / VR Headsets / Smart Watches / Smart Bands / Fitness Bands /<br>
+            Tempered Glass / Wall Chargers / Feature Phones / Bluetooth Devices<br>
+            TVs, Audio & Video: Televisions / LED TVs / Smart Televisions / Ultra HD TV / FHD TV / 3D TV / HD Ready TV /
+            Speakers / Headphones / Earphones / Samsung Televisions / Micromax Televisions / LG Televisions /<br>
+            Home Theatre Systems<br>
+            Memory Cards: 8 GB Memory Cards / 16 GB Memory Cards / 32 GB Memory Cards / 64 GB Memory Cards / Sandisk
+            Memory Cards / Samsung Memory Cards / Strontium Memory Cards<br>
+            Computers: Lenovo Laptops / Acer Laptops / Apple Macbooks / Notebook / Laptops / External Hard Disks / Dell
+            Laptops / HP Laptops / Pen Drives<br>
+            Camera: DSLR Cameras / Canon Cameras / Nikon Coolpix / Nikon DSLR Cameras / Sony Cameras / Digital Cameras /
+            Panasonic Cameras / Samsung Cameras<br>
+            Watches: Mens Watches / Womens Watches / Casio Watches / Titan Watches / Fastrack Watches / Fossil watches /
+            Casio Edifice<br>
+            Fashion Accessories: Bags / Wildcraft / Skybags / Fastrack Bags / Shoes / Floaters & Sandals / Kurta /
+            Raymond<br>
+            Men's Clothing: Shirts / Casual Shirts / Formal Shirts / Party Wear Shirts / T Shirts / Polo T shirts / Low
+            Rise Jeans / Slim Jeans / Reversible Jackets / V Neck T shirts / Henley T shirts / Printed T shirts / Round
+            Neck T shirts /<br>
+            Chinos / Hooded Sweatshirts / Kurta Payjama Sets / Dhoti Kurta Sets / Cotton Shirts / Full Sleeves Casual
+            Shirts / Full Sleeves Formal Shirts / Regular Fit Formal Shirts / Silk Party Shirts<br>
+            Women's Clothing: Saree / Designer Saree / Cotton Sarees / Georgette Sarees / Chiffon Sarees / Net Sarees /
+            Anarkali Suits / Kurtis / Leggings & Churidars / Embroidered Lehengas / Bridal Lehengas / Black Dresses
+            /<br>
+            Jeggings / Jeans / A Line Skirts / Women's Gowns / Women's Dresses<br>
+            Home & Kitchen: Home Decor / Paintings / Clocks / Flasks & Thermos / Photo Frames / Tupperware Kitchenware /
+            Hawkins Kitchenware / Milton Kitchenware<br>
+            Books: Fiction / Non Fiction / Children & Young Adults / Competitive Exams / School Books / Academic Texts /
+            Reference / Self Help<br>
+            FMCG Offer - Top Brands: Revlon / Street Wear / St. Ives / Accu-Chek Health Monitoring Devices / Nutraj -
+            California Walnuts / JSB Massagers / Park Avenue / Gillette / Airwick / Veet / Livon / Mortein / Whisper /
+            KamaSutra /<br>
+            Durex / Bio Oil<br>
+            Appliances: Air Conditioners / Air Coolers / Refrigerators / Fans / Washing Machines / Mircowaves / Irons /
+            Trimmers / Hair Dryers / Shavers / Vacuum Cleaners / Air Purifiers / CCTV Cameras / Ceiling Fans / Table
+            Fans /<br>
+            Exhaust Fans / Pedestal Fans / Ceiling Fans with 4 Blades / Ceiling Fans with 6 Blades<br>
+            Home Furnishing: Bed Linen / Bed Sheets / Bath Linen / Mattresses / Curtains / Cushion Covers / Pillows /
+            Carpets / Kids Bedding<br>
+            Furniture Online: Sofa Set / Sofa Cum Beds / Chairs / Dining Sets / Bean Bags / Shoe Storage / Dining Chairs
+            / Storage Cabinets / Tables and Desks / Bedroom Furniture / Living Room Furniture / XXXL Bean Bags /<br>
+            Chair Shape Bean Bags / Lounger Shape Bean Bags / Muddha Shape Bean Bags / Black Color Bean Bags<br>
+            Toys & Games: Soft Toys / Dolls / Musical Toys / Kids Skates / Kids Skate Scooters / Barbie Games / Action
+            Figures / Electronic Toys / Action figures / Toddler Toys / Die Cast Vehicle / Ride Ons & Scooters<br>
+            Todays Deals: Bestsellers / Most Searched Products / Home Utility Offers / Laptops & Accessories Offers /
+            Men's Fashion / Women's Fashion / Price Point Store / Laptops & Accessories Offers<br>
+            Online Shopping: Everything below 299 / Mens Footwear / Lehenga / Dresses / Mobile Phones / Womens Watches /
+            Kurtis / Smartphones / Womens Footwear / Sarees / Casual Shoes / Laptops / Mens Watches /<br>
+            Womens Casual Shoes / 4G Mobiles / Frocks / Women Suits / Tops & Tunics / Gowns / Watches / Sports &
+            Bicycles / Water Geysers / Men's Sportswear / Multi Speed Bi-cycles / Mobile Batteries / Kids T-shirts /<br>
+            Girls Frocks & Junpsuits / Kids Watches / Stationery Supplies / Baby Care Products / Copper Water Bottles
+        </p>
+        <p id="aboutsnap">ABOUT SNAPDEAL</p>
+        <p class="footer-desfont">
+            About Snapdeal – India’s Ultimate Online Shopping Site Snapdeal’s vision is to create India’s most reliable
+            and frictionless commerce ecosystem that creates life-changing experiences for buyers and sellers. In
+            February 2010,
+            Kunal Bahl along with Rohit Bansal, started Snapdeal.com - India’s largest online shopping marketplace, with
+            the widest assortment of 35 million plus products across 800 plus diverse categories from over 125,000
+            regional,
+            national, and international brands and retailers. With millions of users and more than 300,000 sellers,
+            Snapdeal is the online shopping site for Internet users across the country, delivering to 6000+ cities and
+            towns in India. In its
+            journey till now, Snapdeal has partnered with several global marquee investors and individuals such as
+            SoftBank, BlackRock, Temasek, Foxconn, Alibaba, eBay Inc., Premji Invest, Intel Capital, Bessemer Venture
+            Partners, Mr. Ratan
+            Tata, among others. Online Shopping – A Boon The trend of online shopping is becoming a household name and
+            so is Snapdeal. Snapdeal is the preferred choice of hundreds of thousands of online shoppers given its
+            mammoth
+            assortment of 15 million+ products, quick delivery even to the remotest corners of the country, and daily
+            deals, discounts & offers to make products available at slashed down prices to our valuable customers. Get
+            Started! Shop
+            Online Today at Snapdeal If you have been missing out on all the fun of online shopping thinking it requires
+            one to be a technology aficionado then we have good news for you. Shopping online particularly at Snapdeal
+            is a child’s
+            play; all you need is a mobile phone or laptop or tablet with Internet connection to get started. Simply log
+            into Snapdeal.com and browse through the wide assortment of products across categories. Once you have zeroed
+            in on your
+            favorite products, simply place the order by filling in the details; the products will be delivered right at
+            your doorstep. Fulfill Your Entrepreneurial Dreams! Sell Today at Snapdeal Thanks to easy-to-understand,
+            flexible policies and SD
+            Advisors to help sellers at each step, anyone from a manufacturer to wholesaler to retailer can sell on
+            Snapdeal. Begin your entrepreneurial journey with Snapdeal as a seller by filling a simple registration form
+            here. Once the
+            registration process is done, you can start selling your products to the entire country by sitting at your
+            home or office. Doesn't it sound thrilling? Of course, it is and the excitement will build up with every
+            order you receive! Start
+            selling at Snapdeal today and see your business reach staggering heights. Shop on the Go – Install Snapdeal
+            App Today! You can shop for your favourite products at Snapdeal even on the go using Snapdeal App. Available
+            for both
+            Android and Apple users, the app can be downloaded from Google Play Store and Apple App Store respectively.
+            The app is quick, user-friendly, and enables shoppers buy products with a breeze. What's more, get timely
+            notifications
+            on your phone or tablet so that you don't miss amazing deals and offers. Download the app right now and
+            experience how fun it is to shop on your mobile!
+        </p>
+    </div>
+    <div id="lastfooter">
+        <div>
+            <p class="footer-desfont">Copyright © 2020, Snapdeal Private Limited (formerly Jasper Infotech Private
+                Limited). All Rights Reserved</p>
+        </div>
+        <div>
+            <p class="footer-desfont">Made with <span>❤️</span> in India</p>
+        </div>
+    </div>
+</body>
+</html>
