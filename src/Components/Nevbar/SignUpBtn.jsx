@@ -14,6 +14,7 @@ import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import FilterFramesOutlinedIcon from "@mui/icons-material/FilterFramesOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import CloseIcon from "@mui/icons-material/Close";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
 export default function SinUpBtn() {
   const HtmlTooltip = styled(({ className, ...props }) => (
@@ -33,6 +34,11 @@ export default function SinUpBtn() {
 
   const responseGoogle = (response) => {
     console.log(response);
+  };
+
+  const responseFacebook = (response) => {
+    console.log(response);
+    handleClose();
   };
 
   const [open, setOpen] = React.useState(false);
@@ -150,23 +156,33 @@ export default function SinUpBtn() {
                 >
                   or Login Using
                 </Typography>
+                <FacebookLogin
+                  appId="5249519815087590"
+                  autoLoad
+                  fields="name,email,picture"
+                  scope="public_profile,email"
+                  callback={responseFacebook}
+                  render={(renderProps) => (
+                    <Button
+                      variant="contained"
+                      startIcon={<FacebookIcon />}
+                      sx={{
+                        fontSize: "12px",
+                        textTransform: "capitalize",
+                        borderRadius: "1%",
+                        border: "none",
+                        boxShadow: "1px 1px 3px grey",
+                        margin: "2%",
+                        padding: "3%",
+                        width: "45%",
+                      }}
+                      onClick={renderProps.onClick}
+                    >
+                      Facebook
+                    </Button>
+                  )}
+                />
 
-                <Button
-                  variant="contained"
-                  startIcon={<FacebookIcon />}
-                  sx={{
-                    fontSize: "12px",
-                    textTransform: "capitalize",
-                    borderRadius: "1%",
-                    border: "none",
-                    boxShadow: "1px 1px 3px grey",
-                    margin: "2%",
-                    padding: "3%",
-                    width: "45%",
-                  }}
-                >
-                  Facebook
-                </Button>
                 <GoogleLogin
                   clientId="512803252250-beprdg6clce6ekr0lv9e044glqn2k5o2.apps.googleusercontent.com"
                   buttonText="Google"
