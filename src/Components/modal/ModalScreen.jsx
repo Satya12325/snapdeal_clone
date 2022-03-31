@@ -8,23 +8,103 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import GoogleLogin from "react-google-login";
 import "./ModalScreen.css";
-import { Link } from "react-router-dom";
+import { Alert, IconButton, Snackbar } from "@mui/material";
 export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   useEffect(() => {
     handleOpen();
   }, []);
 
-  const responseGoogle = (response) => {
-    console.log(response);
-  };
-
-  const responseFacebook = (response) => {
-    console.log(response);
-    handleClose();
-  };
   const [inputValue, setInputValue] = React.useState("");
   const [otp, setOtp] = React.useState("");
+  const [message, setMessage] = React.useState("");
   const [otpscreen, setOtpscreen] = React.useState(false);
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const [errorSnackbar, setErrorSnackbar] = React.useState(false);
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  const handleOpenSnackbar = () => {
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+
+  const handleErrorSnackbar = () => {
+    setErrorSnackbar(true);
+  };
+
+  const handleErrorCloseSnackbar = () => {
+    setErrorSnackbar(false);
+  };
+
+  const responseGoogleSuccess = async (response) => {
+    console.log(response);
+    await fetch("http://localhost:8000/user", {
+      method: "POST",
+      body: JSON.stringify({
+        googleId: response.googleId,
+        otp: response.accessToken,
+        displayName: response.profileObj.name,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status == 200) {
+          handleOpenSnackbar();
+          handleClose();
+        } else {
+          setMessage("Google Authentication failed");
+          handleErrorSnackbar();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => console.log(e));
+  };
+  const responseGoogleFailure = (err) => {
+    console.log(err);
+    setMessage("Google Authentication failed");
+    handleErrorSnackbar();
+  };
+
+  const responseFacebook = async (response) => {
+    console.log(response);
+    await fetch("http://localhost:8000/user", {
+      method: "POST",
+      body: JSON.stringify({
+        facebookId: response.userID,
+        otp: response.accessToken,
+        displayName: response.name,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status == 200) {
+          handleOpenSnackbar();
+          handleClose();
+        } else {
+          setMessage("Facebook Authentication failed");
+          handleErrorSnackbar();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        handleOpenSnackbar();
+        // handleClose();
+      })
+      .catch((e) => console.log(e));
+    // handleClose();
+  };
+
   const handleInput = async () => {
     console.log("resend");
     if (inputValue) {
@@ -36,7 +116,15 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           "content-type": "application/json",
         },
       })
-        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+          } else {
+            setMessage("create user!");
+            handleErrorSnackbar();
+          }
+          return res.json();
+        })
         .then((data) => {
           console.log(data);
           setOtpscreen(true);
@@ -48,17 +136,26 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   const checkOtp = async () => {
     if (otp) {
       console.log("sending data to backend", otp);
-      await fetch("http://localhost:8000/user", {
+      await fetch("http://localhost:8000/user/otp", {
         method: "POST",
         body: JSON.stringify({ email: inputValue, otp: otp }),
         headers: {
           "content-type": "application/json",
         },
       })
-        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            handleOpenSnackbar();
+            handleClose();
+          } else {
+            setMessage("OTP did not matched!");
+            handleErrorSnackbar();
+          }
+          return res.json();
+        })
         .then((data) => {
           console.log(data);
-          handleClose();
         })
         .catch((e) => console.log(e));
     }
@@ -84,9 +181,35 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     position: "absolute",
     boxShadow: "0 0 12px 6px rgba(0,0,0,0.05),0 3px 6px rgba(0,0,0,0.15)",
   };
-
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleErrorCloseSnackbar}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleErrorCloseSnackbar}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
   return (
     <div>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={openSnackbar}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        message="Successfully logged in"
+        action={action}
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Successfully logged in!
+        </Alert>
+      </Snackbar>
       <Modal
         open={open}
         onClose={handleClose}
@@ -100,6 +223,9 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                 <li class="mngorder">
                   <i class="userAuthIcons"></i>
                   <h4>MANAGE YOUR ORDERS</h4>
+                  <Button onClick={handleOpenSnackbar}>
+                    Open simple snackbar
+                  </Button>
                   <p>Track orders, manage cancellations &amp; returns.</p>
                 </li>
                 <li class="shortlistitm">
@@ -115,6 +241,21 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
               </ul>
             </div>
             <div className="userAuth-card">
+              <Snackbar
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                open={errorSnackbar}
+                autoHideDuration={4000}
+                onClose={handleErrorCloseSnackbar}
+                action={action}
+              >
+                <Alert
+                  onClose={handleErrorCloseSnackbar}
+                  severity="error"
+                  sx={{ width: "100%" }}
+                >
+                  {message}
+                </Alert>
+              </Snackbar>
               <Typography sx={{ fontSize: "18px" }}>
                 Login/Sign Up On Snapdeal{" "}
                 <CloseIcon
@@ -264,8 +405,8 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                         <p style={{ margin: "0% 5%" }}>Google</p>
                       </Button>
                     )}
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
+                    onSuccess={responseGoogleSuccess}
+                    onFailure={responseGoogleFailure}
                     cookiePolicy={"single_host_origin"}
                   />
                 </div>
