@@ -15,10 +15,10 @@ export const getProductRequest = () => {
   };
 };
 
-export const removeDetails = (id) => ({
+export const removeDetails = (_id) => ({
   type: "REMOVE_DETAILS",
   payload: {
-      id: id
+      _id: _id
   }
 });
 

@@ -39,7 +39,7 @@ export default function ProductDetails(){
             return;
           }
           setData(data);
-          console.log(data)
+          console.log(data,"data")
           setIsLoading(false);
         } catch (error) {
             console.log(error);
@@ -58,7 +58,7 @@ export default function ProductDetails(){
         
             // fetchData();
           }, [id]);
-          if (isLoding) return <h3><Productskleton/></h3>;
+          if (isLoding) return <h3>...Loading</h3>;
     return (
         <>
             <div className={styles.main}>

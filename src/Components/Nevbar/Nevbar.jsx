@@ -8,7 +8,10 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SignUpBtn from "./SignUpBtn";
-import {Link} from "react-router-dom";
+import {Link,useNavigate} from "react-router-dom";
+import axios from 'axios';
+
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -21,6 +24,20 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function Nevbar() {
   const [margin, setMargin] = useState("27px");
+  const neviget = useNavigate()
+  const [cart, setCart] = React.useState([]);
+
+ 
+  React.useEffect( () => {
+    axios.get('https://meesho-db.herokuapp.com/cart')
+    .then(res => cartHandler(res.data))
+    .catch(err => console.log(err));
+})
+
+  const cartHandler = (data) => {  
+    
+    setCart(data)
+}
 
   window.addEventListener("scroll", () => {
     var scrollTop = document.documentElement.scrollTop;
@@ -71,7 +88,7 @@ export default function Nevbar() {
           </div>
           <div>
             Cart
-            <StyledBadge badgeContent={4} color="secondary">
+            <StyledBadge onClick={()=>neviget("/cart_view")} badgeContent={cart.length} color="secondary">
               <ShoppingCartOutlinedIcon style={{ color: "white" }} />
             </StyledBadge>
           </div>

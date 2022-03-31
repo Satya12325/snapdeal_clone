@@ -1,7 +1,32 @@
 import "./Address.css";
 import Typography from "@mui/material/Typography";
-
+import { useState } from 'react';
+import axios from 'axios';
+import * as React from 'react';
 export default function Address() {
+
+  const [totalRs, setTotalRs] = React.useState(0);
+  const [isLoding,setIsLoading] = React.useState(true);
+  React.useEffect( () => {
+    axios.get('https://meesho-db.herokuapp.com/cart')
+    .then(res => {
+      setIsLoading(true)
+      cartHandler(res.data)
+      setIsLoading(false)
+    }
+      )
+    .catch(err => console.log(err));
+})
+  const cartHandler = (data) => {
+    let totalPrice = 0;
+    for(let item of data){
+        totalPrice += item.discounted_price;
+    }
+    setTotalRs(totalPrice);
+    
+}
+if(isLoding)
+return <h3 style={{textAlign: "center"}}>...Loading</h3>;
   return (
     <>
       <div className="address">
@@ -47,6 +72,22 @@ export default function Address() {
           <div className="adrs">
               <div></div>
           <button className="save-btn">SAVE AND CONTINUE</button>
+          </div>
+        </div>
+        <div className="Summary">
+          <div className="price">
+            <p>total</p>
+            <p>{totalRs}</p>
+
+          </div>
+          <div className="price">
+            <p>Delivery Charges</p>
+            <p className="free">Free</p>
+
+          </div>
+          <div className="price pay">
+            <h3>You Pay:</h3>
+            <h3 className="payment">Rs {totalRs}</h3>
           </div>
         </div>
       </div>
