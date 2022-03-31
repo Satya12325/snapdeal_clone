@@ -67,7 +67,11 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           handleOpenSnackbar();
           handleClose();
         } else {
-          setMessage("Google Authentication failed");
+          setMessage("Google Authentication failed, Please sign up");
+          handleErrorSnackbar();
+          setregistered(true);
+          setOtpscreen(false);
+          setLogin(false);
           handleErrorSnackbar();
         }
         return res.json();
@@ -101,8 +105,12 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           handleOpenSnackbar();
           handleClose();
         } else {
-          setMessage("Facebook Authentication failed");
+          setMessage("Facebook Authentication failed, Please sign up");
+
           handleErrorSnackbar();
+          setregistered(true);
+          setOtpscreen(false);
+          setLogin(false);
         }
         return res.json();
       })
@@ -477,7 +485,6 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                         placeholder="Email"
                         name="email"
                         autocomplete="off"
-                        
                         onChange={(e) => setEmail(e.currentTarget.value)}
                       />
                     </div>
@@ -501,7 +508,6 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                         placeholder="DOB"
                         name="DOB"
                         autocomplete="off"
-                        
                         onChange={(e) => setDOB(e.currentTarget.value)}
                       />
                     </div>
@@ -513,7 +519,6 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                         placeholder="Name"
                         name="name"
                         autocomplete="off"
-                        
                         onChange={(e) => setName(e.currentTarget.value)}
                       />
                     </div>
@@ -534,7 +539,6 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                       numeric and 1 alphabet
                     </p>
                     <Checkbox
-                      
                       defaultChecked
                       sx={{
                         color: "gray",
