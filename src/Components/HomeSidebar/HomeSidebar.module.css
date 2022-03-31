@@ -199,3 +199,9 @@
 .sidebarnohover {
     font-size: 12px;
 }
+@media screen and (max-width:1000px){
+    .topContent {
+        display: none;
+    }
+     
+}

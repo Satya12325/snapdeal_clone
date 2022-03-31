@@ -1,7 +1,7 @@
 
 
 import RollerShadesClosedOutlinedIcon from '@mui/icons-material/RollerShadesClosedOutlined';
-
+import style from "./Navbar.module.css";
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
@@ -39,7 +39,7 @@ HideOnScroll.propTypes = {
 
 export default function TopNav(props) {
   return (
-    <React.Fragment>
+    <React.Fragment class={style.TopNamv}>
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar
@@ -52,13 +52,8 @@ export default function TopNav(props) {
                     }}
         >
            <div
-          style={{
-            
-            display: "flex",
-            justifyContent: "space-between",
-            background:"#C6003D",
-            fontSize: "12px"
-          }}
+           className={style.UpNav}
+       
           >
           <div>Brand Waali Quality, Bazaar Waali Deal!</div>
         <div style={{display: "flex",width: "45%", justifyContent: "space-between"}}>

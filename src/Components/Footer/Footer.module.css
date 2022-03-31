@@ -127,3 +127,15 @@
 .lastfooter>div:nth-child(1) {
     flex-basis: 90%;
 }
+@media screen and (max-width:800px){
+    .fourflex {
+        display: none;
+    }
+    .footerdescription {
+        display: none;
+    }
+    .MAinFooter {
+        display: none;
+    }
+  
+}

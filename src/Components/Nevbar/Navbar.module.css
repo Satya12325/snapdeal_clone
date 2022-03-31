@@ -16,7 +16,7 @@
     background: transparent;
     padding: 10px;
     color: white;
-   
+    
 }
 .logIn{
     padding: 10px 5px;
@@ -29,7 +29,7 @@
 .Avatar{
     background:#CD003F !important;
     font-size: 12px!important;
-      
+    
 }
 .Avatar:hover{
     background:black !important
@@ -41,4 +41,24 @@
     color: white;
     padding: 10px;
     border-radius: 3px;
+}
+.UpNav{
+    display: flex;
+    justify-content: space-between;
+    background:#C6003D;
+    font-size: 12px
+}
+
+@media screen and (max-width:900px){
+    .container{
+        display: none;
+    }
+    .UpNav{
+        display: none;
+    }
+    .TopNamv{
+        display: none !important;
+    }
+
+     
 }

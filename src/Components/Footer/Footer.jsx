@@ -3,7 +3,7 @@ import styles from "./Footer.module.css";
 import { FooterDescription } from "./FooterDescription";
 export const Footer = () => {
   return (
-    <div>
+    <div className={styles.MAinFooter}>
       <div className={styles.fourflex}>
         <div className={styles.insideflex}>
           <div className={styles.icons}>

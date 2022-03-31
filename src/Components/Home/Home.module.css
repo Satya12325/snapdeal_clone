@@ -83,9 +83,29 @@
     width:18%;
    
 }
-@media screen and (max-width:900px){
+.ResponsiveContainer{
+    display:none;
+}
+@media screen and (max-width:800px){
+    .Landing{
+       display:none;
+    }
     .home{
         width:100%;
     }
-     
+    .ResponsiveContainer{
+        display:block
+    }
+   
+}
+@media screen and (max-width:1000px){
+    .sidebar{
+        display:none;
+        width:0%;
+    }
+    .AutoImageSlide{
+        width:90%;
+       
+    }
+    
 }

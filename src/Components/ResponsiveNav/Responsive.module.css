@@ -1,0 +1,12 @@
+.Topnav{
+    position: fixed;
+    height:50px;
+    margin-top: -90px;
+    background-color: #fff;
+    width: 100%;
+
+}
+.Scrollbar{
+    display:flex;
+    overflow-y: hidden;
+}
