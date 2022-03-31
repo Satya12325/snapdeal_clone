@@ -201,6 +201,7 @@
     cursor: pointer;  
     margin-left: auto;
     margin-right: 2rem;
+    
 }
 .footer > div:nth-child(3):hover{
     background-color: rgb(185, 29, 53);
