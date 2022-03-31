@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -8,7 +8,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import GoogleLogin from "react-google-login";
 import "./ModalScreen.css";
-import { Alert, IconButton, Snackbar } from "@mui/material";
+import { Alert, Checkbox, IconButton, Snackbar } from "@mui/material";
+import { pink } from "@mui/material/colors";
 export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   useEffect(() => {
     handleOpen();
@@ -18,8 +19,17 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   const [otp, setOtp] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [otpscreen, setOtpscreen] = React.useState(false);
+  const [registered, setregistered] = React.useState(true);
+  const [login, setLogin] = React.useState(true);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [errorSnackbar, setErrorSnackbar] = React.useState(false);
+
+  const [mobile, setMobile] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [DOB, setDOB] = useState("");
+  const [email, setEmail] = useState("");
+
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -120,7 +130,9 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           console.log(res);
           if (res.status == 200) {
           } else {
-            setMessage("create user!");
+            setMessage("Please Sign up!");
+            setregistered(false);
+            setLogin(false);
             handleErrorSnackbar();
           }
           return res.json();
@@ -128,6 +140,43 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         .then((data) => {
           console.log(data);
           setOtpscreen(true);
+        })
+        .catch((e) => console.log(e));
+    }
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    if (!(email && DOB && password && mobile && name)) {
+      setMessage("Please fill all the details");
+      handleErrorSnackbar();
+    } else {
+      let userObj = {
+        email: email,
+        DOB: DOB,
+        password: password,
+        mobile: mobile,
+        displayName: name,
+      };
+
+      await fetch("http://localhost:8000/user/create", {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userObj),
+      })
+        .then((res) => {
+          if (res.status == 200) {
+            console.log("user created");
+            handleOpenSnackbar();
+            handleClose();
+          } else {
+            console.log("something went wrong");
+            setMessage("something went wrong");
+            handleErrorSnackbar();
+          }
+          return res.json();
         })
         .catch((e) => console.log(e));
     }
@@ -223,9 +272,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                 <li class="mngorder">
                   <i class="userAuthIcons"></i>
                   <h4>MANAGE YOUR ORDERS</h4>
-                  <Button onClick={handleOpenSnackbar}>
-                    Open simple snackbar
-                  </Button>
+
                   <p>Track orders, manage cancellations &amp; returns.</p>
                 </li>
                 <li class="shortlistitm">
@@ -257,7 +304,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                 </Alert>
               </Snackbar>
               <Typography sx={{ fontSize: "18px" }}>
-                Login/Sign Up On Snapdeal{" "}
+                {login ? "Login/Sign Up On Snapdeal" : "Sign Up"}
                 <CloseIcon
                   onClick={handleClose}
                   sx={{
@@ -268,7 +315,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                   }}
                 />
               </Typography>
-              {!otpscreen ? (
+              {!otpscreen && login ? (
                 <div>
                   <form>
                     <div className="content">
@@ -410,6 +457,207 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                     cookiePolicy={"single_host_origin"}
                   />
                 </div>
+              ) : !registered ? (
+                <>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      color: "gray",
+                      margin: "2% 0%",
+                    }}
+                  >
+                    Create an account on on Snapdeal
+                  </Typography>
+                  <form onSubmit={handleSignUp} className="signUp">
+                    <div className="signUpInput">
+                      <input
+                        value={email}
+                        className="formInput"
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        autocomplete="off"
+                        
+                        onChange={(e) => setEmail(e.currentTarget.value)}
+                      />
+                    </div>
+                    <div className="signUpInput">
+                      <input
+                        value={mobile}
+                        className="formInput"
+                        type="text"
+                        placeholder="Mobile"
+                        name="mobile"
+                        autocomplete="off"
+                        maxlength="10"
+                        onChange={(e) => setMobile(e.currentTarget.value)}
+                      />
+                    </div>
+                    <div className="signUpInput">
+                      <input
+                        value={DOB}
+                        className="formInput"
+                        type="date"
+                        placeholder="DOB"
+                        name="DOB"
+                        autocomplete="off"
+                        
+                        onChange={(e) => setDOB(e.currentTarget.value)}
+                      />
+                    </div>
+                    <div className="signUpInput">
+                      <input
+                        value={name}
+                        className="formInput"
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                        autocomplete="off"
+                        
+                        onChange={(e) => setName(e.currentTarget.value)}
+                      />
+                    </div>
+                    <div className="signUpInput">
+                      <input
+                        value={password}
+                        className="formInput"
+                        type="password"
+                        placeholder="password"
+                        name="Password"
+                        autocomplete="off"
+                        minlength="6"
+                        onChange={(e) => setPassword(e.currentTarget.value)}
+                      />
+                    </div>
+                    <p>
+                      Password should have a minimum of 6 characters, at least 1
+                      numeric and 1 alphabet
+                    </p>
+                    <Checkbox
+                      
+                      defaultChecked
+                      sx={{
+                        color: "gray",
+                        "&.Mui-checked": {
+                          color: "black",
+                        },
+                      }}
+                    />
+                    <label className="label">Keep me logged in</label>
+                    <Button
+                      variant="contained"
+                      size="large"
+                      type="submit"
+                      sx={{
+                        width: "90%",
+                        margin: "5% 5%",
+                        backgroundColor: "#e40046",
+                        "&:hover": '{ backgroundColor : "#e40046" }',
+                      }}
+                      disableElevation
+                      disableFocusRipple
+                      disableRipple
+                      onClick={checkOtp}
+                    >
+                      Continue
+                    </Button>
+                  </form>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      color: "gray",
+                      margin: "20% 0% 0% 0%",
+                      width: "100%",
+                      textAlign: "center",
+                    }}
+                  >
+                    or Login Using
+                  </Typography>
+                  <FacebookLogin
+                    appId="5249519815087590"
+                    fields="name,email,picture"
+                    scope="public_profile,email"
+                    callback={responseFacebook}
+                    render={(renderProps) => (
+                      <Button
+                        variant="contained"
+                        startIcon={<FacebookIcon />}
+                        sx={{
+                          fontSize: "12px",
+                          textTransform: "capitalize",
+                          borderRadius: "1%",
+                          border: "none",
+                          boxShadow: "1px 1px 3px grey",
+                          margin: "2%",
+                          padding: "3%",
+                          width: "45%",
+                        }}
+                        onClick={renderProps.onClick}
+                      >
+                        Facebook
+                      </Button>
+                    )}
+                  />
+                  <GoogleLogin
+                    clientId="512803252250-beprdg6clce6ekr0lv9e044glqn2k5o2.apps.googleusercontent.com"
+                    buttonText="Google"
+                    render={(renderProps) => (
+                      <Button
+                        variant="outlined"
+                        sx={{
+                          fontSize: "12px",
+                          textTransform: "capitalize",
+                          color: "gray",
+                          margin: "12px",
+                          textAlign: "center",
+                          borderRadius: "1%",
+                          border: "none",
+                          boxShadow: "1px 1px 3px grey",
+                          width: "42%",
+                        }}
+                        disableRipple
+                        disableFocusRipple
+                        disableElevation
+                        onClick={renderProps.onClick}
+                      >
+                        <p style={{ margin: "5%" }}>
+                          <svg
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18px"
+                            height="18px"
+                            viewBox="0 0 48 48"
+                            class="social-icon"
+                          >
+                            <g>
+                              <path
+                                fill="#EA4335"
+                                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                              ></path>
+                              <path
+                                fill="#4285F4"
+                                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+                              ></path>
+                              <path
+                                fill="#FBBC05"
+                                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+                              ></path>
+                              <path
+                                fill="#34A853"
+                                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                              ></path>
+                              <path fill="none" d="M0 0h48v48H0z"></path>
+                            </g>
+                          </svg>
+                        </p>
+                        <p style={{ margin: "0% 5%" }}>Google</p>
+                      </Button>
+                    )}
+                    onSuccess={responseGoogleSuccess}
+                    onFailure={responseGoogleFailure}
+                    cookiePolicy={"single_host_origin"}
+                  />
+                </>
               ) : (
                 <div className="otpDiv">
                   <i class="userAuthIcons otpIcon"></i>
