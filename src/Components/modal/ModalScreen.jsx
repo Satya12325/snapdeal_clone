@@ -19,6 +19,9 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   let { user, setUser } = useContext(UserProvider);
   const [otp, setOtp] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [messageSuccess, setMessageSuccess] = React.useState(
+    "Successfully logged in!"
+  );
   const [otpscreen, setOtpscreen] = React.useState(false);
   const [registered, setregistered] = React.useState(true);
   const [login, setLogin] = React.useState(true);
@@ -33,7 +36,12 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   const [googleId, setGoogleId] = useState("");
   const [facebookId, setFacebookId] = useState("");
 
+  function sleep(milliseconds) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
   const handleOpenSnackbar = () => {
+    console.log("success snackbar")
     setOpenSnackbar(true);
   };
 
@@ -55,7 +63,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     setName(response.profileObj.name);
     setGoogleId(response.googleId);
     console.log(email, name, googleId, response.googleId);
-    await fetch("http://localhost:8000/user", {
+    await fetch("https://snapdeal-backend.herokuapp.com/user", {
       method: "POST",
       body: JSON.stringify({
         googleId: response.googleId,
@@ -66,9 +74,10 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         "content-type": "application/json",
       },
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.status == 200) {
           handleOpenSnackbar();
+          await sleep(3000);
           handleClose();
         } else {
           setMessage("Google Authentication failed, Please sign up");
@@ -102,7 +111,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     console.log(response);
     setName(response.name);
     setFacebookId(response.id);
-    await fetch("http://localhost:8000/user", {
+    await fetch("https://snapdeal-backend.herokuapp.com/user", {
       method: "POST",
       body: JSON.stringify({
         facebookId: response.userID,
@@ -113,7 +122,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         "content-type": "application/json",
       },
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.status == 200) {
           let name = response.name.split(" ");
           setUser({
@@ -122,6 +131,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
             isLoggedIn: true,
           });
           handleOpenSnackbar();
+          await sleep(3000);
           handleClose();
         } else {
           setMessage("Facebook Authentication failed, Please sign up");
@@ -133,9 +143,10 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         }
         return res.json();
       })
-      .then((data) => {
+      .then(async (data) => {
         console.log(data);
         handleOpenSnackbar();
+        await sleep(3000);
         // handleClose();
       })
       .catch((e) => console.log(e));
@@ -146,7 +157,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     console.log("resend");
     if (inputValue) {
       console.log("sending data to backend", inputValue);
-      await fetch("http://localhost:8000/user", {
+      await fetch("https://snapdeal-backend.herokuapp.com/user", {
         method: "POST",
         body: JSON.stringify({ email: inputValue }),
         headers: {
@@ -192,17 +203,19 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         facebookId: facebookId,
       };
 
-      await fetch("http://localhost:8000/user/create", {
+      await fetch("https://snapdeal-backend.herokuapp.com/user/create", {
         method: "post",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify(userObj),
       })
-        .then((res) => {
+        .then(async (res) => {
           if (res.status == 200) {
             console.log("user created");
+            setMessageSuccess("Account Created, Please login in now!");
             handleOpenSnackbar();
+            await sleep(2000);
             handleClose();
           } else {
             console.log("something went wrong");
@@ -218,7 +231,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   const checkOtp = async () => {
     if (otp) {
       console.log("sending data to backend", otp);
-      await fetch("http://localhost:8000/user/otp", {
+      await fetch("https://snapdeal-backend.herokuapp.com/user/otp", {
         method: "POST",
         body: JSON.stringify({ email: inputValue, otp: otp }),
         headers: {
@@ -290,11 +303,11 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         open={openSnackbar}
         autoHideDuration={4000}
         onClose={handleCloseSnackbar}
-        message="Successfully logged in"
+        message={messageSuccess}
         action={action}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Successfully logged in!
+          {messageSuccess}
         </Alert>
       </Snackbar>
       <Modal
@@ -310,7 +323,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                 <li class="mngorder">
                   <i class="userAuthIcons"></i>
                   <h4>MANAGE YOUR ORDERS</h4>
-
+                  <button onClick={handleOpenSnackbar}>Snackbar</button>
                   <p>Track orders, manage cancellations &amp; returns.</p>
                 </li>
                 <li class="shortlistitm">
