@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -8,14 +8,15 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import GoogleLogin from "react-google-login";
 import "./ModalScreen.css";
+import { UserProvider } from "../../Context/UserContextProvider";
 import { Alert, Checkbox, IconButton, Snackbar } from "@mui/material";
-import { pink } from "@mui/material/colors";
 export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   useEffect(() => {
     handleOpen();
   }, []);
 
   const [inputValue, setInputValue] = React.useState("");
+  let { user, setUser } = useContext(UserProvider);
   const [otp, setOtp] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [otpscreen, setOtpscreen] = React.useState(false);
@@ -29,10 +30,9 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   const [password, setPassword] = useState("");
   const [DOB, setDOB] = useState("");
   const [email, setEmail] = useState("");
+  const [googleId, setGoogleId] = useState("");
+  const [facebookId, setFacebookId] = useState("");
 
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
   const handleOpenSnackbar = () => {
     setOpenSnackbar(true);
   };
@@ -51,12 +51,16 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
 
   const responseGoogleSuccess = async (response) => {
     console.log(response);
+    setEmail(response.profileObj.email);
+    setName(response.profileObj.name);
+    setGoogleId(response.googleId);
+    console.log(email, name, googleId, response.googleId);
     await fetch("http://localhost:8000/user", {
       method: "POST",
       body: JSON.stringify({
         googleId: response.googleId,
         otp: response.accessToken,
-        displayName: response.profileObj.name,
+        displayName: name,
       }),
       headers: {
         "content-type": "application/json",
@@ -69,7 +73,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         } else {
           setMessage("Google Authentication failed, Please sign up");
           handleErrorSnackbar();
-          setregistered(true);
+          setregistered(false);
           setOtpscreen(false);
           setLogin(false);
           handleErrorSnackbar();
@@ -77,7 +81,14 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        setUser({
+          ...user,
+          displayName: response.profileObj.givenName,
+          otp: response.googleId,
+          isLoggedIn: true,
+        });
+
+        console.log(data, user);
       })
       .catch((e) => console.log(e));
   };
@@ -89,6 +100,8 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
 
   const responseFacebook = async (response) => {
     console.log(response);
+    setName(response.name);
+    setFacebookId(response.id);
     await fetch("http://localhost:8000/user", {
       method: "POST",
       body: JSON.stringify({
@@ -102,13 +115,19 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     })
       .then((res) => {
         if (res.status == 200) {
+          let name = response.name.split(" ");
+          setUser({
+            displayName: name[0],
+            otp: response.id,
+            isLoggedIn: true,
+          });
           handleOpenSnackbar();
           handleClose();
         } else {
           setMessage("Facebook Authentication failed, Please sign up");
 
           handleErrorSnackbar();
-          setregistered(true);
+          setregistered(false);
           setOtpscreen(false);
           setLogin(false);
         }
@@ -147,6 +166,10 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         })
         .then((data) => {
           console.log(data);
+          setUser({
+            displayName: data.data.displayName,
+            other: data.data,
+          });
           setOtpscreen(true);
         })
         .catch((e) => console.log(e));
@@ -165,6 +188,8 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         password: password,
         mobile: mobile,
         displayName: name,
+        googleId: googleId,
+        facebookId: facebookId,
       };
 
       await fetch("http://localhost:8000/user/create", {
@@ -212,9 +237,14 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
+          console.log(data, "data");
+          setUser({
+            displayName: data.data.displayName,
+            otp: data.data.otp,
+            isLoggedIn: true,
+          });
         })
-        .catch((e) => console.log(e));
+        .catch((e) => console.log(e, "error"));
     }
   };
 
@@ -229,7 +259,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     height: "360px",
     p: 4,
     // boxSizing: "border-box",
-    backgroundImage: "url(../../img/userAuthSpritev3.png)",
+    backgroundImage: "url(../assets.images/userAuthSpritev3.png)",
     backgroundPosition: "0 0",
     verticalAlign: "sub",
     display: "inline-block",

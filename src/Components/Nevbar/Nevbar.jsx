@@ -35,7 +35,7 @@ export default function Nevbar() {
     axios.get('https://snapdeal-backend.herokuapp.com/cart')
     .then(res => cartHandler(res.data))
     .catch(err => console.log(err));
-})
+},[])
 
   const cartHandler = (data) => {  
     
