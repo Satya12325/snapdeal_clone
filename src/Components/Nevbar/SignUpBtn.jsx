@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { useContext } from "react";
 import { styled } from "@mui/material/styles";
 import "./SignUp.css";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
@@ -10,6 +10,7 @@ import { ModalScreen } from "../modal/ModalScreen";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import FilterFramesOutlinedIcon from "@mui/icons-material/FilterFramesOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { UserProvider } from "../../Context/UserContextProvider";
 
 export default function SinUpBtn() {
   const HtmlTooltip = styled(({ className, ...props }) => (
@@ -27,25 +28,34 @@ export default function SinUpBtn() {
     },
   }));
   const [open, setOpen] = React.useState(false);
+  let { user, setUser } = useContext(UserProvider);
+  const logoutUser = () => {
+    setUser({
+      isLoggedIn: false,
+    });
+  };
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
     <div>
-      {open && (
-        <ModalScreen open = {open} handleClose={handleClose} handleOpen={handleOpen} />
+      {open && !user.isLoggedIn && (
+        <ModalScreen
+          open={open}
+          handleClose={handleClose}
+          handleOpen={handleOpen}
+        />
       )}
       <HtmlTooltip
         title={
-
-          <React.Fragment >
-
-          
-           <div className={style.logIn}>
-               <PermIdentityOutlinedIcon/>
-               Your Account</div>
-           <div className={style.logIn}>
-               <FilterFramesOutlinedIcon/>
-               Your Orders</div>
+          <React.Fragment>
+            <div className={style.logIn}>
+              <PermIdentityOutlinedIcon />
+              Your Account
+            </div>
+            <div className={style.logIn}>
+              <FilterFramesOutlinedIcon />
+              Your Orders
+            </div>
 
             <div className={style.logIn}>
               <PermIdentityOutlinedIcon />
@@ -64,15 +74,18 @@ export default function SinUpBtn() {
                 If you are a new Youser
               </p>
               <div className={style.logIn}>Register</div>
-              <button className={style.btn} onClick={handleOpen}>
-                Login
+              <button
+                className={style.btn}
+                onClick={user.isLoggedIn ? logoutUser : handleOpen}
+              >
+                {user.isLoggedIn ? "Logout" : "Login"}
               </button>
             </div>
           </React.Fragment>
         }
       >
         <div className={style.Signup}>
-          sign In
+          {user.isLoggedIn ? user.displayName : "Sign In"}
           <Avatar className={style.Avatar} src="/broken-image.jpg" />
         </div>
       </HtmlTooltip>

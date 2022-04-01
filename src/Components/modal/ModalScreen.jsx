@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -8,14 +8,15 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import GoogleLogin from "react-google-login";
 import "./ModalScreen.css";
+import { UserProvider } from "../../Context/UserContextProvider";
 import { Alert, Checkbox, IconButton, Snackbar } from "@mui/material";
-import { pink } from "@mui/material/colors";
 export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   useEffect(() => {
     handleOpen();
   }, []);
 
   const [inputValue, setInputValue] = React.useState("");
+  let { user, setUser } = useContext(UserProvider);
   const [otp, setOtp] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [otpscreen, setOtpscreen] = React.useState(false);
@@ -53,6 +54,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     setEmail(response.profileObj.email);
     setName(response.profileObj.name);
     setGoogleId(response.googleId);
+    console.log(email, name, googleId, response.googleId);
     await fetch("http://localhost:8000/user", {
       method: "POST",
       body: JSON.stringify({
@@ -69,7 +71,6 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           handleOpenSnackbar();
           handleClose();
         } else {
-          console.log();
           setMessage("Google Authentication failed, Please sign up");
           handleErrorSnackbar();
           setregistered(false);
@@ -80,7 +81,14 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        setUser({
+          ...user,
+          displayName: response.profileObj.givenName,
+          otp: response.googleId,
+          isLoggedIn: true,
+        });
+
+        console.log(data, user);
       })
       .catch((e) => console.log(e));
   };
@@ -107,6 +115,12 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     })
       .then((res) => {
         if (res.status == 200) {
+          let name = response.name.split(" ");
+          setUser({
+            displayName: name[0],
+            otp: response.id,
+            isLoggedIn: true,
+          });
           handleOpenSnackbar();
           handleClose();
         } else {
@@ -152,6 +166,10 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         })
         .then((data) => {
           console.log(data);
+          setUser({
+            displayName: data.data.displayName,
+            other: data.data,
+          });
           setOtpscreen(true);
         })
         .catch((e) => console.log(e));
@@ -220,6 +238,11 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         })
         .then((data) => {
           console.log(data, "data");
+          setUser({
+            displayName: data.data.displayName,
+            otp: data.data.otp,
+            isLoggedIn: true,
+          });
         })
         .catch((e) => console.log(e, "error"));
     }
@@ -236,7 +259,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     height: "360px",
     p: 4,
     // boxSizing: "border-box",
-    backgroundImage: "url(../../img/userAuthSpritev3.png)",
+    backgroundImage: "url(../assets.images/userAuthSpritev3.png)",
     backgroundPosition: "0 0",
     verticalAlign: "sub",
     display: "inline-block",
