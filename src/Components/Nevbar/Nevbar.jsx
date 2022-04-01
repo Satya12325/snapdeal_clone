@@ -10,7 +10,9 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SignUpBtn from "./SignUpBtn";
 import {Link,useNavigate} from "react-router-dom";
 import axios from 'axios';
-
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -22,14 +24,15 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
+
 export default function Nevbar() {
   const [margin, setMargin] = useState("27px");
   const neviget = useNavigate()
   const [cart, setCart] = React.useState([]);
-
+  const [input, setInput] = useState("");
  
   React.useEffect( () => {
-    axios.get('https://meesho-db.herokuapp.com/cart')
+    axios.get('https://snapdeal-backend.herokuapp.com/cart')
     .then(res => cartHandler(res.data))
     .catch(err => console.log(err));
 })
@@ -47,6 +50,16 @@ export default function Nevbar() {
       setMargin("27px");
     }
   });
+  let link = ["men","women","beauty","kids","electronic","shoes","kitchen"]
+
+  const handleClick = () => {
+    for(let i=0;i<link.length;i++) {
+      if(input.toLocaleLowerCase() ===link[i]){
+        neviget(`/${link[i]}`);
+      }
+    }
+  }
+
 
   return (
     <React.Fragment>
@@ -76,10 +89,14 @@ export default function Nevbar() {
                 placeholder="Search products & brands"
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
+                value={input}
+                onChange={(e)=>setInput(e.target.value)}
               />
+            
               <span
                 className="input-group-text text-light bg-dark border-0"
                 id="basic-addon2"
+                onClick={handleClick}
               >
                 <SearchIcon />
                 Search

@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 import { CartProvider } from "../../Context/CartContextProvider";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-
+import  {postCartProduct} from "../../Server/Apis";
+import {getCartProduct } from "../../Server/Apis";
 
 export default function ProductDetail() {
   const [suggested, setSuggested] = React.useState([]);
@@ -37,13 +38,21 @@ export default function ProductDetail() {
   };
 
   console.log("Product view = ", cartProduct);
+  let path = categoryPath[cartProduct.category];
+  const getCartData = async () => {
+    try{
+      const {data} = await getCartProduct(path);
+      console.log("getCartData",data)
+      setSuggested(data)
+
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
 
   React.useEffect(() => {
-    let path = categoryPath[cartProduct.category];
-    axios
-      .get(`https://meesho-db.herokuapp.com/${path}`)
-      .then((res) => setSuggested(res.data))
-      .catch((err) => console.log(err));
+    getCartData();
   }, [cartProduct]);
 
   const responsive = {
@@ -66,18 +75,33 @@ export default function ProductDetail() {
     }
   };
 
-  const addToCart = (product) => {
-    axios
-      .post("https://meesho-db.herokuapp.com/cart", product)
-      .then((res) => navigate("/cart_view"))
-      .catch((err) => console.log(err));
+  const addToCart = async() => {   
+    
+    try{
+      const {data} = await postCartProduct(cartProduct);
+      console.log("cart data",data);
+      navigate("/cart_view")
+
+    }
+    catch(err) {
+      console.log(err);
+    }
   };
 
-  const hanDlaeBuy = (product) => {
-    axios
-      .post("https://meesho-db.herokuapp.com/cart", product)
-      .then((res) => navigate("/address"))
-      .catch((err) => console.log(err));
+  const hanDlaeBuy = async() => {
+    // axios
+    //   .post("https://meesho-db.herokuapp.com/cart", product)
+    //   .then((res) => navigate("/address"))
+    //   .catch((err) => console.log(err));
+    try{
+      const {data} = await postCartProduct(cartProduct);
+      console.log("cart data",data);
+      navigate("/address")
+
+    }
+    catch(err) {
+      console.log(err);
+    }
   };
 
   const handleProduct = (product) => {
@@ -232,7 +256,7 @@ export default function ProductDetail() {
               <div className={styles.btnDiv}>
                 <div
                   className={styles.btn}
-                  onClick={() => addToCart(cartProduct)}
+                  onClick={ addToCart}
                 >
                   ADD TO CART
                 </div>

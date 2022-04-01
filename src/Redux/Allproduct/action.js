@@ -1,3 +1,7 @@
+import {deleteCartProduct} from "../../Server/Apis"
+
+
+
 export const getProduct = (product) => {
   return {
       type: "GET_PRODUCT",
@@ -21,6 +25,17 @@ export const removeDetails = (_id) => ({
       _id: _id
   }
 });
+// export const deleteCartProduct = (id) => async (dispatch) => {
+//   try {
+//     await deleteCartProduct(id);
+    
+//     dispatch({ type: "DELETE_EDUCATION", payload: id });
+//   } catch (error) {
+//     console.log(error);
+   
+//   }
+// };
+
 
 export const addToCart = ({id,title,model,price,image}) => {
       return {

@@ -57,7 +57,7 @@ export default function ResponsiveProducts(){
                    {
             data?.map((item)=>(
                 
-                <div style={{width:"150px"}}>
+                <div key={item.id} style={{width:"150px"}}>
                 <Cards
                     meta={item}
                     key={item._id}
@@ -76,7 +76,7 @@ export default function ResponsiveProducts(){
         {
             men?.map((item)=>(
                 
-                <div style={{width:"150px"}}>
+                <div style={{width:"180px"}}>
                 <Cards
                     meta={item}
                     key={item._id}

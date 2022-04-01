@@ -12,6 +12,10 @@ import { CartProvider } from '../../Context/CartContextProvider';
 import axios from 'axios';
 import {removeDetails} from "../../Redux/Allproduct/action"
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import {deleteCartProduct } from "../../Server/Apis";
+import {delete_api} from "../../Redux/Cacrt/cart.api"
+
+
 
 
 
@@ -52,19 +56,30 @@ export default function Payment(){
         );
     const dispatch = useDispatch();
 
-    const handleRemove = (id)=>{
-        axios.delete('https://meesho-db.herokuapp.com/cart'+id)
-    .then((response) => {
-        const sucessDelet=removeDetails(response.data)
-        dispatch(sucessDelet)
-        cartHandler();
-    }).catch((error) => {
-        console.log(error)
-    })}
+//     const handleRemove = async(_id)=>{
+//         // deleteCartProduct(id)
+//     // .then((response) => {
+//     //     const sucessDelet=removeDetails(response)
+//     //     dispatch(sucessDelet)
+       
+//     // }).catch((error) => {
+//     //     console.log(error)
+//     // })
+//         try{
+//         const data=   await deleteCartProduct(_id)
+//         console.log("delet DAta",data )
+
+//         }
+//        catch(err) {
+//            console.log(err)
+//        }
+       
+
+// }
 
 
     React.useEffect( () => {
-        axios.get('https://meesho-db.herokuapp.com/cart')
+        axios.get('https://snapdeal-backend.herokuapp.com/cart')
         .then(res => cartHandler(res.data))
         .catch(err => console.log(err));
     })
@@ -139,7 +154,7 @@ export default function Payment(){
 
                             {
                                 cart.map( (item, ind) => (<CartView product={item} key={ind}
-                                handelRemove={handleRemove}
+                                handelRemove={()=>dispatch(delete_api(item._id))}
                                 />) )
                             }
                             

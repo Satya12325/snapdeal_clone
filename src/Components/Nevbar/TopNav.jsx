@@ -39,7 +39,7 @@ HideOnScroll.propTypes = {
 
 export default function TopNav(props) {
   return (
-    <React.Fragment class={style.TopNamv}>
+    <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar

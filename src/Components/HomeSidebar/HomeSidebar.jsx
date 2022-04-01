@@ -1,18 +1,34 @@
 import React from 'react';
 import styles from "./HomeSidebar.module.css";
+import {Link} from "react-router-dom";
+import {useState} from 'react';
 
-export const HomeSidebar = () => {
+
+
+export const HomeSidebar = ({handleClick}) => {
+    const [name,setName] = useState("")
+
+    
+
+
   return (
     <div className={styles.topContent}>
         <div className={styles.sidemenu}>
             <ul className={styles.navarea}>
                 <p className={styles.sidebarheading} >TOP CATEGORIES</p>
-                <li><a href="#">
-                        <span className={styles.insidesidebarmain}><img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30mobile4.png" width="28px" /></span>
+                <li>
+                    <Link to={"/men"}>
+                        <span className={styles.insidesidebarmain}
+                        value={"men"}
+                        onChange={(e)=>setName(e.target.value)}
+                        // onClick={handleClick(name)}
+                        >
+                            <img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30mobile4.png" width="28px" /></span>
 
                         <span className={styles.insidesidebarmain2}>
                             <p className={styles.in}>Men's Fashion</p>
-                        </span></a>
+                        </span>  
+                        </Link>
 
                     <div className={styles.subnav}>
                         <div className={styles.submenu}>
@@ -104,11 +120,11 @@ export const HomeSidebar = () => {
                         </div>
                     </div>
                 </li>
-                <li className={styles.sidebarmain}><a href="">
+                <li className={styles.sidebarmain}><Link to={"/women"}>
                         <span className={styles.insidesidebarmain}><img src="https://i2.sdlcdn.com/img/leftnavicon09/30x30home_living2.png" width="28px" /></span>
                         <span className={styles.insidesidebarmain2}>
                             <p className={styles.in}>Women's Fashion</p>
-                        </span></a>
+                        </span></Link>
 
                     <div className={styles.subnav}>
                         <div className={styles.submenu}>
@@ -207,11 +223,11 @@ export const HomeSidebar = () => {
                         </div>
                     </div>
                 </li>
-                <li className={styles.sidebarmain}><a href="">
+                <li className={styles.sidebarmain}><Link to={"/kitchen"}>
                         <span className={styles.insidesidebarmain}><img src="https://n2.sdlcdn.com/imgs/c/0/x/Homekitchenfurnishing-3eda1.jpg" width="28px"/></span>
                         <span className={styles.insidesidebarmain2}>
                             <p className={styles.in}>Home & Kitchen</p>
-                        </span></a>
+                        </span></Link>
 
                     <div className={styles.subnav}>
                         <div className={styles.submenu}>
@@ -301,11 +317,11 @@ export const HomeSidebar = () => {
                         </div>
                     </div>
                 </li>
-                <li className={styles.sidebarmain}><a href="">
+                <li className={styles.sidebarmain}><Link to={"/kids"}>
                         <span className={styles.insidesidebarmain}><img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30music1.png" width="28px" /></span>
                         <span className={styles.insidesidebarmain2}>
                             <p className={styles.in}>Toys, Kids'Fashion</p>
-                        </span></a>
+                        </span></Link>
 
                     <div className={styles.subnav}>
                         <div className={styles.submenu}>
@@ -406,12 +422,12 @@ export const HomeSidebar = () => {
                         </div>
                     </div>
                 </li>
-                <li className={styles.sidebarmain}><a href="#">
+                <li className={styles.sidebarmain}><Link to={"/beauty"}>
                         <span className={styles.insidesidebarmain}><img src="https://i1.sdlcdn.com/img/leftnavicon09/fashion30x30_3.png" width="28px" /></span>
                         <span className={styles.insidesidebarmain2}>
                             <p className={styles.in}>Beauty & Health</p>
 
-                        </span></a>
+                        </span></Link>
 
                     <div className={styles.subnav}>
                         <div className={styles.submenu}>
@@ -516,7 +532,7 @@ export const HomeSidebar = () => {
                 <p className={styles.sidebarheading}>MORE CATEGORIES</p>
                 <li><a href="">Automotives</a></li>
                 <li><a href="">Mobile & Accessories</a></li>
-                <li><a href="">Electronics</a></li>
+                <li><Link to={"/electronic"}>Electronics</Link></li>
                 <li><a href="">Sports, Fitness & Outdoor</a></li>
                 <li><a href="">Computers & Gaming</a></li>
                 <li><a href="">Books,Media & Music</a></li>

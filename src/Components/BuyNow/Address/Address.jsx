@@ -3,10 +3,18 @@ import Typography from "@mui/material/Typography";
 import { useState } from 'react';
 import axios from 'axios';
 import * as React from 'react';
+import loading from './looding.gif'
+import CardDetails from './CardDetails'
+
+
 export default function Address() {
 
-  const [totalRs, setTotalRs] = React.useState(0);
-  const [isLoding,setIsLoading] = React.useState(true);
+  const [totalRs, setTotalRs] = useState(0);
+  const [isLoding,setIsLoading] = useState(true);
+
+
+
+
   React.useEffect( () => {
     axios.get('https://meesho-db.herokuapp.com/cart')
     .then(res => {
@@ -26,9 +34,14 @@ export default function Address() {
     
 }
 if(isLoding)
-return <h3 style={{textAlign: "center"}}>...Loading</h3>;
+return <h3 className="Looading">
+  <div style={{width:"200px",margin:"auto"}}>
+  <img style={{width: '100%', height: '20vh'}} src={loading} alt="" />
+  </div>
+</h3>;
   return (
     <>
+    <div>
       <div className="address">
         <div className="address-container">
             <div style={{height:"50px",backgroundColor:"black",color:"white",padding:"10px 30px",borderRadius:"3px"}}>
@@ -90,6 +103,9 @@ return <h3 style={{textAlign: "center"}}>...Loading</h3>;
             <h3 className="payment">Rs {totalRs}</h3>
           </div>
         </div>
+      </div>
+      <CardDetails/>
+
       </div>
     </>
   );

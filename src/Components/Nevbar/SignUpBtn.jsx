@@ -31,7 +31,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
         <div>
         <HtmlTooltip
         title={
-          <React.Fragment className={style.Signup}>
+          <React.Fragment>
            <div className={style.logIn}>
                <PermIdentityOutlinedIcon/>
                Your Account</div>

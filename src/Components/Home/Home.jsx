@@ -30,6 +30,7 @@ export default function Home() {
             <BestsellerScorlling />
           </div>
         </div>
+        {/* <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_9yjs9v4t.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop controls autoplay></lottie-player> */}
       </div>
       <div className={style.ResponsiveContainer}>
         <ResposiveNav />
