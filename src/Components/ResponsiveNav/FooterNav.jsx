@@ -37,7 +37,7 @@ export default function BottomNavBar() {
         axios.get('https://meesho-db.herokuapp.com/cart')
         .then(res => cartHandler(res.data))
         .catch(err => console.log(err));
-    })
+    },[])
     const cartHandler = (data) => {  
     
         setCart(data)

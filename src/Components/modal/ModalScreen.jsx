@@ -29,10 +29,9 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   const [password, setPassword] = useState("");
   const [DOB, setDOB] = useState("");
   const [email, setEmail] = useState("");
+  const [googleId, setGoogleId] = useState("");
+  const [facebookId, setFacebookId] = useState("");
 
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
   const handleOpenSnackbar = () => {
     setOpenSnackbar(true);
   };
@@ -51,12 +50,15 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
 
   const responseGoogleSuccess = async (response) => {
     console.log(response);
+    setEmail(response.profileObj.email);
+    setName(response.profileObj.name);
+    setGoogleId(response.googleId);
     await fetch("http://localhost:8000/user", {
       method: "POST",
       body: JSON.stringify({
         googleId: response.googleId,
         otp: response.accessToken,
-        displayName: response.profileObj.name,
+        displayName: name,
       }),
       headers: {
         "content-type": "application/json",
@@ -67,9 +69,10 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           handleOpenSnackbar();
           handleClose();
         } else {
+          console.log();
           setMessage("Google Authentication failed, Please sign up");
           handleErrorSnackbar();
-          setregistered(true);
+          setregistered(false);
           setOtpscreen(false);
           setLogin(false);
           handleErrorSnackbar();
@@ -89,6 +92,8 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
 
   const responseFacebook = async (response) => {
     console.log(response);
+    setName(response.name);
+    setFacebookId(response.id);
     await fetch("http://localhost:8000/user", {
       method: "POST",
       body: JSON.stringify({
@@ -108,7 +113,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           setMessage("Facebook Authentication failed, Please sign up");
 
           handleErrorSnackbar();
-          setregistered(true);
+          setregistered(false);
           setOtpscreen(false);
           setLogin(false);
         }
@@ -165,6 +170,8 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         password: password,
         mobile: mobile,
         displayName: name,
+        googleId: googleId,
+        facebookId: facebookId,
       };
 
       await fetch("http://localhost:8000/user/create", {
@@ -212,9 +219,9 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
+          console.log(data, "data");
         })
-        .catch((e) => console.log(e));
+        .catch((e) => console.log(e, "error"));
     }
   };
 

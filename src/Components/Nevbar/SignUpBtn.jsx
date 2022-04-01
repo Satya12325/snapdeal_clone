@@ -37,7 +37,7 @@ export default function SinUpBtn() {
       <HtmlTooltip
         title={
 
-          <div className={style.Signup}>
+          <React.Fragment >
 
           
            <div className={style.logIn}>
@@ -68,7 +68,7 @@ export default function SinUpBtn() {
                 Login
               </button>
             </div>
-          </div>
+          </React.Fragment>
         }
       >
         <div className={style.Signup}>
