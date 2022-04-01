@@ -449,7 +449,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                     )}
                   />
                   <GoogleLogin
-                    clientId="512803252250-beprdg6clce6ekr0lv9e044glqn2k5o2.apps.googleusercontent.com"
+                    clientId="512803252250-377j9aloa5naoi0e4690nvkm1o4e1ajv.apps.googleusercontent.com"
                     buttonText="Google"
                     autoLoad={false}
                     render={(renderProps) => (
@@ -647,7 +647,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                     )}
                   />
                   <GoogleLogin
-                    clientId="512803252250-beprdg6clce6ekr0lv9e044glqn2k5o2.apps.googleusercontent.com"
+                    clientId="512803252250-377j9aloa5naoi0e4690nvkm1o4e1ajv.apps.googleusercontent.com"
                     buttonText="Google"
                     autoLoad={false}
                     render={(renderProps) => (
