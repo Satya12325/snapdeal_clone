@@ -451,6 +451,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                   <GoogleLogin
                     clientId="512803252250-beprdg6clce6ekr0lv9e044glqn2k5o2.apps.googleusercontent.com"
                     buttonText="Google"
+                    autoLoad={false}
                     render={(renderProps) => (
                       <Button
                         variant="outlined"
@@ -648,6 +649,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                   <GoogleLogin
                     clientId="512803252250-beprdg6clce6ekr0lv9e044glqn2k5o2.apps.googleusercontent.com"
                     buttonText="Google"
+                    autoLoad={false}
                     render={(renderProps) => (
                       <Button
                         variant="outlined"
