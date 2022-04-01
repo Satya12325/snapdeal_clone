@@ -22,9 +22,11 @@ import {useContext} from "react"
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
-    top: 13,
+    top: -1,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: "0 4px",
+    backgroundColor:"#ffffff",
+    color:"#333"
   },
 }));
 
@@ -56,10 +58,10 @@ console.log("cartProduct",cartProduct);
     // setCart(cartProduct)
 },[])
 
-//   const cartHandler = (data) => {  
-    
-//     setCart(data)
-// }
+  const cartHandler = (data) => {
+
+    setCart(data)
+}
 
   window.addEventListener("scroll", () => {
     var scrollTop = document.documentElement.scrollTop;
@@ -112,7 +114,7 @@ console.log("cartProduct",cartProduct);
                 value={input}
                 onChange={(e)=>setInput(e.target.value)}
               />
-            
+
               <span
                 className="input-group-text text-light bg-dark border-0"
                 id="basic-addon2"
