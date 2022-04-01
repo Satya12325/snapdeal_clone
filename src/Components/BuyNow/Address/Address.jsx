@@ -16,7 +16,7 @@ export default function Address() {
 
 
   React.useEffect( () => {
-    axios.get('https://meesho-db.herokuapp.com/cart')
+    axios.get('https://snapdeal-backend.herokuapp.com/cart')
     .then(res => {
       setIsLoading(true)
       cartHandler(res.data)
@@ -24,7 +24,7 @@ export default function Address() {
     }
       )
     .catch(err => console.log(err));
-})
+},[])
   const cartHandler = (data) => {
     let totalPrice = 0;
     for(let item of data){
