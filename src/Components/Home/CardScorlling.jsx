@@ -49,7 +49,7 @@ export const CardScorlling = () => {
 
         useEffect(() => {
             getProducts();
-        },[]);
+        },[product.length]);
 
     const responsive = {
         superLargeDesktop: {

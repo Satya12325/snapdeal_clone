@@ -13,6 +13,10 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+import {getCartProduct} from '../../Server/Apis';
+import { CartProvider } from '../../Context/CartContextProvider';
+import {useContext} from "react"
+
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -30,17 +34,32 @@ export default function Nevbar() {
   const neviget = useNavigate()
   const [cart, setCart] = React.useState([]);
   const [input, setInput] = useState("");
- 
-  React.useEffect( () => {
-    axios.get('https://snapdeal-backend.herokuapp.com/cart')
-    .then(res => cartHandler(res.data))
-    .catch(err => console.log(err));
-})
 
-  const cartHandler = (data) => {  
+
+  let {cartProduct} = useContext(CartProvider);
+console.log("cartProduct",cartProduct);
+
+  const getCart = async ()=>{
+    try {
+     const {data} =  await getCartProduct()
+     setCart(data)
+    }
+    catch (e) {
+      console.log(e)
+  }
+  }
+  React.useEffect( () => {
+    // axios.get('https://snapdeal-backend.herokuapp.com/cart')
+    // .then(res => cartHandler(res.data))
+    // .catch(err => console.log(err));
+    getCart();
+    // setCart(cartProduct)
+},[100])
+
+//   const cartHandler = (data) => {  
     
-    setCart(data)
-}
+//     setCart(data)
+// }
 
   window.addEventListener("scroll", () => {
     var scrollTop = document.documentElement.scrollTop;

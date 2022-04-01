@@ -49,7 +49,7 @@ export default function ElectrinicProduct(){
 
     useEffect(() => {
         getProducts();
-    },[]);
+    },[data.length]);
 
     const handleProduct = (product) => {
         setCartProduct(product);

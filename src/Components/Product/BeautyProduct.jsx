@@ -49,7 +49,7 @@ export default function BeautyProduct(){
 
     useEffect(() => {
         getProducts();
-    },[]);
+    },[data.length]);
 
     const handleProduct = (product) => {
         setCartProduct(product);

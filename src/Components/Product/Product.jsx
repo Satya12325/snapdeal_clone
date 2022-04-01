@@ -39,7 +39,7 @@ export default function MenProduct() {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [data.length]);
 
   const handleProduct = (product) => {
     setCartProduct(product);

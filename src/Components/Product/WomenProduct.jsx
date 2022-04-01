@@ -53,7 +53,7 @@ export default function WomenProduct(){
 
     useEffect(() => {
         getProducts();
-    },[]);
+    },[data.length]);
 
     const handleProduct = (product) => {
         setCartProduct(product);
@@ -103,6 +103,25 @@ export default function WomenProduct(){
               </div>
               <div className="CardsDiv">
                 {data?.map((item) => (
+                  <div className="Cards">
+                    <Cards
+                      meta={item}
+                      key={item._id}
+                      image={item.images[0]}
+                      title={item.title}
+                      price={item.original_price}
+                      d_price={item.discounted_price}
+                      discount={Math.floor(
+                        ((item.original_price - item.discounted_price) /
+                          item.original_price) *
+                          100
+                      )}
+                      value={item.rating}
+                      handleProduct={handleProduct}
+                    />
+                  </div>
+                ))}
+                 {women?.map((item) => (
                   <div className="Cards">
                     <Cards
                       meta={item}

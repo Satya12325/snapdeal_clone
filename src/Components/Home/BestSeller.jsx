@@ -43,7 +43,7 @@ export const BestsellerScorlling = () => {
 
         useEffect(() => {
             getProducts();
-        },[]);
+        },[data.length]);
 
     const responsive = {
         superLargeDesktop: {

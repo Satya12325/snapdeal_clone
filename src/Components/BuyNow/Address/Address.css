@@ -49,6 +49,39 @@
     padding-top: 250px;
     padding-bottom: 250px
 }
-.date{
+.data{
     width:45px
+}
+.cardDetails{
+    display:flex;
+
+}
+.cardVerient{
+    width:18%;
+    border-right:1px solid rgb(231, 228, 228);
+    margin-right: 2%;
+}
+.cardVerient > div{
+    cursor: pointer;
+    padding: 15px 5px;
+    color:gray;
+    border-radius: 5px;
+   
+}
+.cardVerient > div:hover{
+    background-color: whitesmoke
+}
+.cardInput{
+    margin-top: 15px;
+
+}
+.cardInput > div{
+    margin-bottom: 10px;
+}
+.pay-btn{
+    height:50px;
+    width:50%;
+    color: white;
+    background-color:#E40046;
+    border: 0;
 }

@@ -49,7 +49,7 @@ export default function FootwearProduct(){
 
     useEffect(() => {
         getProducts();
-    },[]);
+    },[data.length]);
 
     const handleProduct = (product) => {
         setCartProduct(product);

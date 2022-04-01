@@ -8,8 +8,8 @@ export const getbeautyProduct = () => {
     return api.get("/beautyProducts/")
 }
 
-export const getCartProduct = (path) => {
-    return api.get(`/${path}`)
+export const getCartProduct = () => {
+    return api.get(`/cart`)
 }
 export const getmensProductId = (id) => {
     return api.get(`/men/${id}`)
