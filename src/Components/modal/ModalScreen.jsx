@@ -323,7 +323,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
                 <li class="mngorder">
                   <i class="userAuthIcons"></i>
                   <h4>MANAGE YOUR ORDERS</h4>
-                  <button onClick={handleOpenSnackbar}>Snackbar</button>
+                  
                   <p>Track orders, manage cancellations &amp; returns.</p>
                 </li>
                 <li class="shortlistitm">

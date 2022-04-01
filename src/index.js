@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 import CartContextProvider from "./Context/CartContextProvider";
 import UserContextProvider from "./Context/UserContextProvider";
+import "./assets/fonts/download.woff2"; 
 
 ReactDOM.render(
   <React.StrictMode>
