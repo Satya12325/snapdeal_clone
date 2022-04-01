@@ -20,6 +20,9 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import {delete_api,cartapi} from "../../Redux/Cacrt/cart.api"
+import { useDispatch,useSelector } from 'react-redux'
+
 
 
 export default function ProductDetail() {
@@ -33,6 +36,10 @@ export default function ProductDetail() {
     vertical: 'top',
     horizontal: 'center',
   });
+
+  const dispatch = useDispatch();
+
+
 
   const { vertical, horizontal } = state;
 
@@ -67,24 +74,24 @@ export default function ProductDetail() {
   );
 
   let categoryPath = {
-    Sarees: "Women_Ethnic",
-    "Mens Top Were": "Men",
-    "Beauty and health": "Beauty_Products",
-    Dresses: "Women_Western",
+    sarees: "women_ethnic",
+    "Mens Top Were": "men",
+    "Beauty and health": "beautyProducts",
+    Dresses: "women_western",
     Jewellery: "Jewellery",
-    "Bags and Footwear": "Bags_Footwear",
-    "Home and Kitchen": "Home_Kitchen",
-    "Kids ": "Kids",
-    Electronics: "Electronics"
+    "Bags and Footwear": "bagsFootwear",
+    "Home and Kitchen": "home_kitchen",
+    "Kids ": "kids",
+    Electronics: "electronics"
   };
 
   console.log("Product view = ", cartProduct);
-  let path = categoryPath[cartProduct.category];
+ // let path = categoryPath[cartProduct.category];
   const getCartData = async () => {
     try{
-      const {data} = await getCartProduct(path);
+      const {data} = await getCartProduct();
       console.log("getCartData",data)
-      setSuggested(data)
+     dispatch(cartapi(data))
 
     }
     catch(err){
@@ -94,6 +101,10 @@ export default function ProductDetail() {
 
   React.useEffect(() => {
     getCartData();
+    let path = categoryPath[cartProduct.category]
+    axios.get(`https://snapdeal-backend.herokuapp.com/${path}`)
+    .then( res => setSuggested(res.data))
+    .catch(err => console.log(err))
   }, [cartProduct]);
 
   const responsive = {
@@ -123,7 +134,9 @@ export default function ProductDetail() {
     }
     try{
       const {data} = await postCartProduct(cartProduct);
+      getCartData();
       console.log("cart data",data);
+      
       navigate("/cart_view")
 
     }
