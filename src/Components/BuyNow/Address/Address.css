@@ -1,0 +1,54 @@
+.address{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    margin: 50px;
+}
+.address-container{
+    width: 70%;
+}
+.adrs{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    margin: 15px;
+    padding-left: 10px;
+}
+.save-btn{
+    border-radius: 3px;
+    border: 0;
+    padding: 10px 18px;
+    background-color: #DA1141;
+    color: #fff;
+}
+.Summary{
+    width: 25%;
+    margin-left: 5%;
+}
+.price{
+    display:flex;
+    justify-content: space-between;
+    color: gray
+}
+.free{
+    color: rgb(25, 156, 25)
+}
+.pay{
+    border-top: 1px solid #e2e2e2;
+}
+.payment{
+    color: black
+}
+.Looading{
+    
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform :translate(-50%,-50%);
+    padding-top: 250px;
+    padding-bottom: 250px
+}
+.date{
+    width:45px
+}

@@ -1,0 +1,141 @@
+.fourflex {
+    background-color: #ffffff;
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 0% 5%;
+    display: flex;
+}
+
+.insideflex {
+    flex-basis: 23%;
+    border-right: 1px solid #e2e2e2;
+    border-left: 1px solid #e2e2e2;
+    padding: 45px 25px 0px;
+    height: 180px;
+    text-align: center;
+}
+
+.insideflexfonthead {
+    font-weight: normal;
+    font-size: 17.2px;
+    color: #4e4e4e;
+}
+
+.insideflexfontbody {
+    font-size: 13.2px;
+    color: #a4a3a3;
+    line-height: 1.7;
+}
+
+.footer {
+    border-bottom: 1px solid #e2e2e2;
+    background-color: #ffffff;
+    padding: 3% 5%;
+    display: flex;
+}
+
+.footer>div:nth-child(1) {
+    flex-basis: 20%;
+}
+
+.footer>div:nth-child(2) {
+    flex-basis: 15%;
+}
+
+.footer>div:nth-child(3) {
+    flex-basis: 20%;
+}
+
+.footer>div:nth-child(4) {
+    flex-basis: 17%;
+}
+
+.subsbox {
+    display: flex;
+}
+
+.subtext {
+    height: 37px;
+    font-size: 13px;
+    color: #999;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #f7f8fa;
+    padding-left: 10px;
+}
+
+.subbutton {
+    background-color: black;
+    color: #ffffff;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.footerfonthead {
+    font-size: 15px;
+    font-weight: 400;
+    color: #25363b;
+}
+
+.paymentconnect {
+    display: flex;
+    padding: 10px 5% 20px;
+    background-color: #ffffff;
+}
+
+.paymentconnect>div:nth-child(1) {
+    flex-basis: 40%;
+}
+
+.paymentconnectfonthead {
+    font-weight: 300;
+}
+
+.connecticons {
+    display: flex;
+}
+
+.connecticons>div:nth-child(even) {
+    padding: 0px 25px;
+}
+
+.footerdescription {
+    padding: 1.5% 5%;
+}
+
+.footerdesfont {
+    font-size: 13.5px;
+    color: #777;
+    line-height: 1.7;
+}
+
+.aboutsnap {
+    padding-top: 1%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #344c55;
+}
+
+.lastfooter {
+    display: flex;
+    background-color: #ffffff;
+    padding: .5% 5%;
+}
+
+.lastfooter>div:nth-child(1) {
+    flex-basis: 90%;
+}
+@media screen and (max-width:800px){
+    .fourflex {
+        display: none;
+    }
+    .footerdescription {
+        display: none;
+    }
+    .MAinFooter {
+        display: none;
+    }
+  
+}

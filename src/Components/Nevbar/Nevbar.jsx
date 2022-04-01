@@ -8,6 +8,12 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SignUpBtn from "./SignUpBtn";
+import {Link,useNavigate} from "react-router-dom";
+import axios from 'axios';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -18,8 +24,23 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
+
 export default function Nevbar() {
   const [margin, setMargin] = useState("27px");
+  const neviget = useNavigate()
+  const [cart, setCart] = React.useState([]);
+  const [input, setInput] = useState("");
+ 
+  React.useEffect( () => {
+    axios.get('https://snapdeal-backend.herokuapp.com/cart')
+    .then(res => cartHandler(res.data))
+    .catch(err => console.log(err));
+})
+
+  const cartHandler = (data) => {  
+    
+    setCart(data)
+}
 
   window.addEventListener("scroll", () => {
     var scrollTop = document.documentElement.scrollTop;
@@ -29,6 +50,16 @@ export default function Nevbar() {
       setMargin("27px");
     }
   });
+  let link = ["men","women","beauty","kids","electronic","shoes","kitchen"]
+
+  const handleClick = () => {
+    for(let i=0;i<link.length;i++) {
+      if(input.toLocaleLowerCase() ===link[i]){
+        neviget(`/${link[i]}`);
+      }
+    }
+  }
+
 
   return (
     <React.Fragment>
@@ -45,10 +76,10 @@ export default function Nevbar() {
       >
         <div className={style.container}>
           <div>
-            <img
+           <Link to={"/"}> <img
               src="https://i3.sdlcdn.com/img/snapdeal/darwin/logo/sdLatestLogo.svg"
               alt="Logo"
-            />
+            /></Link>
           </div>
           <div style={{width:"50%"}}>
             <div className="input-group mb-3 border-0">
@@ -58,10 +89,14 @@ export default function Nevbar() {
                 placeholder="Search products & brands"
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
+                value={input}
+                onChange={(e)=>setInput(e.target.value)}
               />
+            
               <span
                 className="input-group-text text-light bg-dark border-0"
                 id="basic-addon2"
+                onClick={handleClick}
               >
                 <SearchIcon />
                 Search
@@ -70,7 +105,7 @@ export default function Nevbar() {
           </div>
           <div>
             Cart
-            <StyledBadge badgeContent={4} color="secondary">
+            <StyledBadge onClick={()=>neviget("/cart_view")} badgeContent={cart.length} color="secondary">
               <ShoppingCartOutlinedIcon style={{ color: "white" }} />
             </StyledBadge>
           </div>

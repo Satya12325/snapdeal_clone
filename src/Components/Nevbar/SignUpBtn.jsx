@@ -36,7 +36,17 @@ export default function SinUpBtn() {
       )}
       <HtmlTooltip
         title={
-          <React.Fragment className={style.Signup}>
+
+          <div className={style.Signup}>
+
+          
+           <div className={style.logIn}>
+               <PermIdentityOutlinedIcon/>
+               Your Account</div>
+           <div className={style.logIn}>
+               <FilterFramesOutlinedIcon/>
+               Your Orders</div>
+
             <div className={style.logIn}>
               <PermIdentityOutlinedIcon />
               Your Account
@@ -58,7 +68,7 @@ export default function SinUpBtn() {
                 Login
               </button>
             </div>
-          </React.Fragment>
+          </div>
         }
       >
         <div className={style.Signup}>

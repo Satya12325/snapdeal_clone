@@ -10,7 +10,7 @@ import Carousel from "react-elastic-carousel";
 import style from "./Home.module.css";
 import Cards from "./Cards"
 import {CardScorlling} from "./CardScorlling"
-
+import CArtScroll from "./CratScroll"
 
 
 
@@ -127,8 +127,11 @@ export default function BannerSlider() {
           </div>
         </div>
         <div
-          style={{ width: "20%", height: "290px", backgroundColor: "red" }}
-        ></div>
+          style={{ width: "20%", height: "290px",  border: "1px solid rgb(214, 208, 208)"}}
+        >
+          <CArtScroll/>
+
+        </div>
       </div>
       <div>
           <Typography
