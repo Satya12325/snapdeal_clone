@@ -1,26 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from "react-router-dom"
-import {Provider} from "react-redux";
-import {store} from "./Redux/store";
-import CartContextProvider from './Context/CartContextProvider';
-
-
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./Redux/store";
+import CartContextProvider from "./Context/CartContextProvider";
+import UserContextProvider from "./Context/UserContextProvider";
+import "./assets/fonts/download.woff2"; 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <CartContextProvider>
-    <Provider store={store}>
-    <App />
-    </Provider>
-    </CartContextProvider>
+      <UserContextProvider>
+        <CartContextProvider>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </CartContextProvider>
+      </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
