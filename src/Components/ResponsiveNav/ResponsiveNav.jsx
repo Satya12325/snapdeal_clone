@@ -46,57 +46,68 @@ const data = [
     {
         id:1,
         name:"Popular",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Popular_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Popular_L0_Navigation_Tile_new22.webp",
+        link:"/"
     },
     {
         id:2,
         name:"Men",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Men_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Men_L0_Navigation_Tile_new22.webp",
+        link:"/men"
     },
     {
         id:3,
         name:"Women",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Women_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Women_L0_Navigation_Tile_new22.webp",
+        link:"/women"
     },
     {
         id:4,
         name:"Kids",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Kids_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Kids_L0_Navigation_Tile_new22.webp",
+        link:"/kids"
     },
     {
         id:5,
         name:"Beauty & Personal Care",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Beauty_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Beauty_L0_Navigation_Tile_new22.webp",
+        link:"/beauty"
     },
     {
         id:6,
         name:"Home & Living",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Home_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Home_L0_Navigation_Tile_new22.webp",
+        link:"/kitchen"
     },
     {
         id:7,
         name:"Sports & Fitness",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Sports_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Sports_L0_Navigation_Tile_new22.webp",
+        link:"/shoes"
     },
     {
         id:8,
         name:"Health & Wellness",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Health_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Health_L0_Navigation_Tile_new22.webp",
+        link:"/beauty"
     },
     {
         id:9,
         name:"Electronics & Assosiries",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Electronics_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Electronics_L0_Navigation_Tile_new22.webp",
+        link:"electronic"
     },
     {
         id:10,
         name:"Automotive",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Automobiles_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Automobiles_L0_Navigation_Tile_new22.webp",
+        link:"/"
     },
     {
         id:11,
         name:"Othercategory",
-        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Others_L0_Navigation_Tile_new22.webp"
+        image:"https://n1.sdlcdn.com/imgs/a/b/c/sdtv/Others_L0_Navigation_Tile_new22.webp",
+        link:"/"
     }
 
 
@@ -143,6 +154,7 @@ export default function ResposiveNav(props){
                             key={item.id}
                             image={item.image}
                             name={item.name}
+                            link={item.link}
                             />
                         ))
                     }

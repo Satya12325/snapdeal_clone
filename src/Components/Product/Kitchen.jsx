@@ -10,10 +10,14 @@ import { CartProvider } from '../../Context/CartContextProvider';
 
 import {getKitchenProduct} from '../../Server/Apis';
 import "./Product.css";
+import { ProductSidebar } from "./ProductSidebar";
+import { Box, Slider } from "@mui/material";
 
 
 
-
+function valuetext(value) {
+  return `${value}%`;
+}
 
 
 export default function KitchenProduct(){
@@ -78,12 +82,42 @@ export default function KitchenProduct(){
             setData(state)
         } 
       };
+
+
+
+      
+  const [value, setValue] = useState([0, 100]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    // console.log(newValue);
+  };
+  console.log(value);
+
     
-      if (isLoding) return <h1 style={{ textAlign: "center" }}>...Looding</h1>;
+      if (isLoding) return <h1 style={{ textAlign: "center" }}>...Loading</h1>;
       return (
         <div>
           <div className="product">
-            <div className="SideBar"></div>
+            <div className="SideBar">
+            <ProductSidebar
+            catagory="All type of Home Kitchen items"
+            product="Home & Kitchen Products"
+            diff1="Bedsheet"
+            diff2="Home decoretor Items"
+            diff3="Screen"
+          />
+          <Box sx={{ maxWidth: 200 }}>
+            Filter By Discount
+            <Slider
+              // getAriaLabel={() => 'Temperature range'}
+              value={value}
+              onChange={handleChange}
+              valueLabelDisplay="auto"
+              getAriaValueText={valuetext}
+            />
+          </Box>
+            </div>
             <div className="ProductDiv">
                 <div style={{display: "flex", flexDirection: "row-reverse"}}>
               <div className="ProductH_l">
@@ -99,25 +133,39 @@ export default function KitchenProduct(){
               </div>
               </div>
               <div className="CardsDiv">
-                {data?.map((item) => (
-                  <div className="Cards">
-                    <Cards
-                      meta={item}
-                      key={item._id}
-                      image={item.images[0]}
-                      title={item.title}
-                      price={item.original_price}
-                      d_price={item.discounted_price}
-                      discount={Math.floor(
-                        ((item.original_price - item.discounted_price) /
-                          item.original_price) *
-                          100
-                      )}
-                      value={item.rating}
-                      handleProduct={handleProduct}
-                    />
-                  </div>
-                ))}
+              {data?.map((item) => {
+              if(Math.floor(
+                ((item.original_price - item.discounted_price) /
+                  item.original_price) *
+                  100
+              ) >= value[0] && Math.floor(
+                ((item.original_price - item.discounted_price) /
+                  item.original_price) *
+                  100
+              ) <=value[1]){
+                return(
+
+                <div className="Cards">
+                <Cards
+                  meta={item}
+                  key={item._id}
+                  image={item.images[0]}
+                  title={item.title}
+                  price={item.original_price}
+                  d_price={item.discounted_price}
+                  discount={Math.floor(
+                    ((item.original_price - item.discounted_price) /
+                      item.original_price) *
+                      100
+                  )}
+                  value={item.rating}
+                  handleProduct={handleProduct}
+                />
+              </div>
+                )
+              }
+              
+})}
               </div>
             </div>
           </div>

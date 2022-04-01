@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import Switch from "@mui/material/Switch";
 import PaymentSucess from "./PaymentSucess"
-
+import PinInput from "./PinInput";
 
 export default function CardDetails({price,handleClick}) {
   const [state, setState] = useState("");
@@ -48,7 +48,9 @@ export default function CardDetails({price,handleClick}) {
               </Typography>
               <div className="cardInput">
                 <div>
-                  Card Number: <input type="number" placeholder="Card Number" />
+                  Card Number:
+                   {/* <input type="number" placeholder="Card Number" /> */}
+                   <PinInput onChange={(pin) => setState(pin)} />
                 </div>
                 <div>
                   Expiry Date:{" "}

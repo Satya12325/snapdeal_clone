@@ -54,7 +54,7 @@ console.log("cartProduct",cartProduct);
     // .catch(err => console.log(err));
     getCart();
     // setCart(cartProduct)
-},[100])
+},[])
 
 //   const cartHandler = (data) => {  
     
@@ -77,6 +77,7 @@ console.log("cartProduct",cartProduct);
         neviget(`/${link[i]}`);
       }
     }
+    setInput("")
   }
 
 

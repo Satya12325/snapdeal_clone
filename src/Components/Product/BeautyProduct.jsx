@@ -7,13 +7,16 @@ import {useNavigate} from "react-router-dom"
 import {useEffect,useState,useContext} from "react";
 import {getProductRequest,getProduct} from "../../Redux/Allproduct/action";
 import { CartProvider } from '../../Context/CartContextProvider';
-
 import {getbeautyProduct} from '../../Server/Apis';
 import "./Product.css";
+import {ProductSidebar} from "./ProductSidebar"
+import { Box, Slider } from '@mui/material';
 
 
 
-
+function valuetext(value) {
+  return `${value}`;
+}
 
 
 export default function BeautyProduct(){
@@ -77,12 +80,42 @@ export default function BeautyProduct(){
             setData(state)
         } 
       };
+
+
+
+      
+  const [value, setValue] = useState([0, 100]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    // console.log(newValue);
+  };
+console.log(value);
+
     
-      if (isLoding) return <h1 style={{ textAlign: "center" }}>...Looding</h1>;
+      if (isLoding) return <h1 style={{ textAlign: "center" }}>...Loading</h1>;
       return (
         <div>
           <div className="product">
-            <div className="SideBar"></div>
+            <div className="SideBar">
+            <ProductSidebar
+          catagory="Men & Women Beauty Product's"
+          product="Beauty Product For Men & Women"
+          diff1="All type"
+          diff2="Face"
+          diff3="Beard"
+          />
+           <Box sx={{ maxWidth: 200 }}>
+             Filter By Discount
+    <Slider
+      getAriaLabel={() => 'Temperature range'}
+      value={value}
+      onChange={handleChange}
+      valueLabelDisplay="auto"
+      getAriaValueText={valuetext}
+    />
+  </Box>
+            </div>
             <div className="ProductDiv">
                 <div style={{display: "flex", flexDirection: "row-reverse"}}>
               <div className="ProductH_l">
@@ -98,25 +131,39 @@ export default function BeautyProduct(){
               </div>
               </div>
               <div className="CardsDiv">
-                {data?.map((item) => (
-                  <div className="Cards">
-                    <Cards
-                      meta={item}
-                      key={item._id}
-                      image={item.images[0]}
-                      title={item.title}
-                      price={item.original_price}
-                      d_price={item.discounted_price}
-                      discount={Math.floor(
-                        ((item.original_price - item.discounted_price) /
-                          item.original_price) *
-                          100
-                      )}
-                      value={item.rating}
-                      handleProduct={handleProduct}
-                    />
-                  </div>
-                ))}
+              {data?.map((item) => {
+              if(Math.floor(
+                ((item.original_price - item.discounted_price) /
+                  item.original_price) *
+                  100
+              ) >= value[0] && Math.floor(
+                ((item.original_price - item.discounted_price) /
+                  item.original_price) *
+                  100
+              ) <=value[1]){
+                return(
+
+                <div className="Cards">
+                <Cards
+                  meta={item}
+                  key={item._id}
+                  image={item.images[0]}
+                  title={item.title}
+                  price={item.original_price}
+                  d_price={item.discounted_price}
+                  discount={Math.floor(
+                    ((item.original_price - item.discounted_price) /
+                      item.original_price) *
+                      100
+                  )}
+                  value={item.rating}
+                  handleProduct={handleProduct}
+                />
+              </div>
+                )
+              }
+              
+})}
               </div>
             </div>
           </div>

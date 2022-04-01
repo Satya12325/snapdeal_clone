@@ -16,14 +16,55 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import  {postCartProduct} from "../../Server/Apis";
 import {getCartProduct } from "../../Server/Apis";
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 export default function ProductDetail() {
   const [suggested, setSuggested] = React.useState([]);
   const [liked, setLiked] = React.useState(false);
   const [sizepick, setSizePick] = useState("");
   const [isLoding, setIsLoading] = useState(true)
+  const [open, setOpen] = useState(false);
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal } = state;
+
+
+
   let { cartProduct, setCartProduct } = React.useContext(CartProvider);
   let navigate = useNavigate();
+
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
+  const action = (
+    <React.Fragment>
+      
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   let categoryPath = {
     Sarees: "Women_Ethnic",
@@ -76,7 +117,10 @@ export default function ProductDetail() {
   };
 
   const addToCart = async() => {   
-    
+    if(sizepick === ""){
+      setOpen(true)
+      return false;
+    }
     try{
       const {data} = await postCartProduct(cartProduct);
       console.log("cart data",data);
@@ -111,6 +155,14 @@ export default function ProductDetail() {
 
   return (
     <>
+    <Snackbar
+     anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="Pick the Size"
+        action={action}
+      />
       <div className={styles.main}>
         
 

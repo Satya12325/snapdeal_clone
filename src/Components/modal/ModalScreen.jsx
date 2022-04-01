@@ -322,18 +322,18 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
               <ul class="listAuthModal">
                 <li class="mngorder">
                   <i class="userAuthIcons"></i>
-                  <h4>MANAGE YOUR ORDERS</h4>
+                  <h4 style={{fontSize:"12px"}}>MANAGE YOUR ORDERS</h4>
                   
                   <p>Track orders, manage cancellations &amp; returns.</p>
                 </li>
                 <li class="shortlistitm">
                   <i class="userAuthIcons"></i>
-                  <h4>SHORTLIST ITEMS YOU LOVE</h4>
+                  <h4 style={{fontSize:"12px"}}>SHORTLIST ITEMS YOU LOVE</h4>
                   <p>Keep items you love on a watchlist.</p>
                 </li>
                 <li class="offrupdate">
                   <i class="userAuthIcons"></i>
-                  <h4>AWESOME OFFERS UPDATES FOR YOU</h4>
+                  <h4 style={{fontSize:"12px"}}>AWESOME OFFERS UPDATES FOR YOU</h4>
                   <p>Be first to know about great offers and save.</p>
                 </li>
               </ul>
