@@ -18,9 +18,11 @@ import Autocomplete from '@mui/material/Autocomplete';
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
-    top: 13,
+    top: -1,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: "0 4px",
+    backgroundColor:"#ffffff",
+    color:"#333"
   },
 }));
 
@@ -30,15 +32,15 @@ export default function Nevbar() {
   const neviget = useNavigate()
   const [cart, setCart] = React.useState([]);
   const [input, setInput] = useState("");
- 
+
   React.useEffect( () => {
     axios.get('https://snapdeal-backend.herokuapp.com/cart')
     .then(res => cartHandler(res.data))
     .catch(err => console.log(err));
 },[])
 
-  const cartHandler = (data) => {  
-    
+  const cartHandler = (data) => {
+
     setCart(data)
 }
 
@@ -92,7 +94,7 @@ export default function Nevbar() {
                 value={input}
                 onChange={(e)=>setInput(e.target.value)}
               />
-            
+
               <span
                 className="input-group-text text-light bg-dark border-0"
                 id="basic-addon2"
