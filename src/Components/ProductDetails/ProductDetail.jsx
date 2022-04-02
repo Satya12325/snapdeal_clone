@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useState} from "react"
+import { useState, useContext } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -14,54 +14,47 @@ import { useNavigate } from "react-router-dom";
 import { CartProvider } from "../../Context/CartContextProvider";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import  {postCartProduct} from "../../Server/Apis";
-import {getCartProduct } from "../../Server/Apis";
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import {delete_api,cartapi} from "../../Redux/Cacrt/cart.api"
-import { useDispatch,useSelector } from 'react-redux'
-
-
+import { postCartProduct } from "../../Server/Apis";
+import { getCartProduct } from "../../Server/Apis";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import { delete_api, cartapi } from "../../Redux/Cacrt/cart.api";
+import { useDispatch, useSelector } from "react-redux";
+import { UserProvider } from "../../Context/UserContextProvider";
 
 export default function ProductDetail() {
   const [suggested, setSuggested] = React.useState([]);
   const [liked, setLiked] = React.useState(false);
   const [sizepick, setSizePick] = useState("");
-  const [isLoding, setIsLoading] = useState(true)
+  const [isLoding, setIsLoading] = useState(true);
+  const [message, setMessage] = React.useState("Pick the Size!");
   const [open, setOpen] = useState(false);
+  let { user, setUser } = useContext(UserProvider);
   const [state, setState] = React.useState({
     open: false,
-    vertical: 'top',
-    horizontal: 'center',
+    vertical: "top",
+    horizontal: "center",
   });
 
   const dispatch = useDispatch();
 
-
-
   const { vertical, horizontal } = state;
-
-
 
   let { cartProduct, setCartProduct } = React.useContext(CartProvider);
   let navigate = useNavigate();
 
-
-
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
     setOpen(false);
   };
 
-
   const action = (
     <React.Fragment>
-      
       <IconButton
         size="small"
         aria-label="close"
@@ -82,81 +75,81 @@ export default function ProductDetail() {
     "Bags and Footwear": "bagsFootwear",
     "Home and Kitchen": "home_kitchen",
     "kids ": "kids",
-    Electronics: "electronics"
+    Electronics: "electronics",
   };
 
   console.log("Product view = ", cartProduct);
- // let path = categoryPath[cartProduct.category];
+  // let path = categoryPath[cartProduct.category];
   const getCartData = async () => {
-    try{
-      const {data} = await getCartProduct();
-      console.log("getCartData",data)
-     dispatch(cartapi(data))
-
+    try {
+      const { data } = await getCartProduct();
+      console.log("getCartData", data);
+      dispatch(cartapi(data));
+    } catch (err) {
+      console.log(err);
     }
-    catch(err){
-      console.log(err)
-    }
-  }
+  };
 
   React.useEffect(() => {
     getCartData();
-    let path = categoryPath[cartProduct.category]
-    axios.get(`https://snapdeal-backend.herokuapp.com/${path}`)
-    .then( res => setSuggested(res.data))
-    .catch(err => console.log(err))
+    let path = categoryPath[cartProduct.category];
+    axios
+      .get(`https://snapdeal-backend.herokuapp.com/${path}`)
+      .then((res) => setSuggested(res.data))
+      .catch((err) => console.log(err));
   }, [cartProduct]);
 
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 4
+      items: 4,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2
-    }
+      items: 2,
+    },
   };
 
-  const addToCart = async() => {   
-    if(sizepick === ""){
-      setOpen(true)
+  const addToCart = async () => {
+    if (sizepick === "") {
+      setOpen(true);
       return false;
     }
-    try{
-      const {data} = await postCartProduct(cartProduct);
+    try {
+      const { data } = await postCartProduct(cartProduct);
       getCartData();
-      console.log("cart data",data);
-      
-      navigate("/cart_view")
+      console.log("cart data", data);
 
-    }
-    catch(err) {
+      navigate("/cart_view");
+    } catch (err) {
       console.log(err);
     }
   };
 
-  const hanDlaeBuy = async() => {
+  const hanDlaeBuy = async () => {
     // axios
     //   .post("https://snapdeal-backend.herokuapp.com/cart", product)
     //   .then((res) => navigate("/address"))
     //   .catch((err) => console.log(err));
-    try{
-      const {data} = await postCartProduct(cartProduct);
-      console.log("cart data",data);
-      navigate("/address")
-
-    }
-    catch(err) {
+    try {
+      const { data } = await postCartProduct(cartProduct);
+      console.log("cart data", data);
+      if (user.isLoggedIn) {
+        navigate("/address");
+      } else {
+        setMessage("Please login to continue!");
+        setOpen(true);
+      }
+    } catch (err) {
       console.log(err);
     }
   };
@@ -168,17 +161,15 @@ export default function ProductDetail() {
 
   return (
     <>
-    <Snackbar
-     anchorOrigin={{ vertical, horizontal }}
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message="Pick the Size"
+        message={message}
         action={action}
       />
       <div className={styles.main}>
-        
-
         <div className={styles.cont}>
           <div>
             <ProductImg imgArr={cartProduct.images} />
@@ -237,15 +228,21 @@ export default function ProductDetail() {
                       style={{
                         color: "red",
                         fontSize: "1.6rem",
-                        marginRight: "1rem"
+                        marginRight: "1rem",
                       }}
                     >
                       Rs. {cartProduct.discounted_price}
                     </p>
                     <span className={styles.dis}>
-                        {/* {suggested.discounted_price} */}
-                        {Math.floor((cartProduct.original_price-cartProduct.discounted_price)/cartProduct.original_price*100)}
-                        % OFF</span>
+                      {/* {suggested.discounted_price} */}
+                      {Math.floor(
+                        ((cartProduct.original_price -
+                          cartProduct.discounted_price) /
+                          cartProduct.original_price) *
+                          100
+                      )}
+                      % OFF
+                    </span>
                   </div>
                 </div>
 
@@ -259,7 +256,7 @@ export default function ProductDetail() {
                       <div
                         style={{
                           borderBottom: "1px solid rgb(193,193,189)",
-                          paddingBottom: "0.3rem"
+                          paddingBottom: "0.3rem",
                         }}
                       >
                         <p>
@@ -297,37 +294,38 @@ export default function ProductDetail() {
 
               <div className={styles.sizeDiv}>
                 <div>Size</div>
-                <div>                  
+                <div>
                   <Select
-                  style={{ width: "250px", color: "black" }}
-                  labelId="demo-simple-select-filled-label"
-                  id="demo-simple-select-filled"
-                  value={sizepick}
-                 
-                  onChange={(e)=>setSizePick(e.target.value)}
-                >
-                  {cartProduct.sizes?.map((item) => (
-                    <MenuItem
-                      value={item}
-                      style={{ textTransform: "uppercase" }}
-                    >
-                      {item}
-                    </MenuItem>
-                  ))}
-                </Select>
+                    style={{ width: "250px", color: "black" }}
+                    labelId="demo-simple-select-filled-label"
+                    id="demo-simple-select-filled"
+                    value={sizepick}
+                    onChange={(e) => setSizePick(e.target.value)}
+                  >
+                    {cartProduct.sizes?.map((item) => (
+                      <MenuItem
+                        value={item}
+                        style={{ textTransform: "uppercase" }}
+                      >
+                        {item}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </div>
               </div>
 
               <div className={styles.btnDiv}>
-                <div
-                  className={styles.btn}
-                  onClick={ addToCart}
-                >
+                <div className={styles.btn} onClick={addToCart}>
                   ADD TO CART
                 </div>
                 <div>
-                  <div onClick={()=>{hanDlaeBuy(cartProduct);getCartData();}}>
-                    <div  className={styles.icon}>
+                  <div
+                    onClick={() => {
+                      hanDlaeBuy(cartProduct);
+                      getCartData();
+                    }}
+                  >
+                    <div className={styles.icon}>
                       <img src="" width="15px" />
                     </div>
                     <p>BUY NOW</p>

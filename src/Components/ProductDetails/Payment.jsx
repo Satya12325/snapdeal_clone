@@ -120,7 +120,7 @@ export default function Payment(){
                         </div>
 
                         <div>
-                            <div>PROCEED TO CHECKOUT</div>
+                            <div onClick={() => {if(totalRs !== 0){neviget("/address")}}}>PROCEED TO CHECKOUT</div>
                             <div onClick={handleOpen}>VIEW CART</div>
                         </div>
                     </div>
@@ -171,7 +171,7 @@ export default function Payment(){
                                 <div style={{display: "flex"}}><div>Delivery Charges: </div><div style={{marginLeft:"auto", color:"rgb(21, 228, 107)"}}>FREE</div></div>
                       
                             </div>
-                            <div onClick={() => neviget("/address")}>PROCEED TO PAY Rs. {totalRs}</div>
+                            <div onClick={() => {if(totalRs !== 0){neviget("/address")} }}>PROCEED TO PAY Rs. {totalRs}</div>
                         </div>
                         
                     </Box>
