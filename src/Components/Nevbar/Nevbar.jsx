@@ -15,7 +15,9 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import {getCartProduct} from '../../Server/Apis';
 import { CartProvider } from '../../Context/CartContextProvider';
-import {useContext} from "react"
+import {useContext} from "react";
+import { useDispatch,useSelector } from 'react-redux'
+import {delete_api,cartapi} from "../../Redux/Cacrt/cart.api"
 
 
 
@@ -34,10 +36,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export default function Nevbar() {
   const [margin, setMargin] = useState("27px");
   const neviget = useNavigate()
-  const [cart, setCart] = React.useState([]);
+  const [cartt, setCart] = React.useState([]);
   const [input, setInput] = useState("");
 
 
+  const dispatch = useDispatch();
+  const {isLoading,isError,cart} = useSelector((state)=>state.cart)
   let {cartProduct} = useContext(CartProvider);
 console.log("cartProduct",cartProduct);
 
@@ -45,19 +49,23 @@ console.log("cartProduct",cartProduct);
     try {
      const {data} =  await getCartProduct()
      setCart(data)
+     console.log("cartProduct", data)
     }
     catch (e) {
       console.log(e)
   }
+  // const {data} =  await getCartProduct()
+  // setCart(data)
   }
   React.useEffect( () => {
     // axios.get('https://snapdeal-backend.herokuapp.com/cart')
     // .then(res => cartHandler(res.data))
     // .catch(err => console.log(err));
     getCart();
+    dispatch(cartapi())
     // setCart(cartProduct)
 },[])
-
+  console.log(cart.length,"cart length")
   const cartHandler = (data) => {
 
     setCart(data)
