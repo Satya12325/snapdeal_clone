@@ -81,7 +81,7 @@ export default function ProductDetail() {
     Jewellery: "Jewellery",
     "Bags and Footwear": "bagsFootwear",
     "Home and Kitchen": "home_kitchen",
-    "Kids ": "kids",
+    "kids ": "kids",
     Electronics: "electronics"
   };
 
