@@ -53,7 +53,7 @@ export default function ProductDetail() {
     setOpen(false);
   };
 
-  const action = (
+  const actionSnackbar = (
     <React.Fragment>
       <IconButton
         size="small"
@@ -167,7 +167,7 @@ export default function ProductDetail() {
         autoHideDuration={6000}
         onClose={handleClose}
         message={message}
-        action={action}
+        action={actionSnackbar}
       />
       <div className={styles.main}>
         <div className={styles.cont}>
