@@ -326,7 +326,7 @@ export default function ProductDetail() {
                   ADD TO CART
                 </div>
                 <div>
-                  <div onClick={()=>hanDlaeBuy(cartProduct)}>
+                  <div onClick={()=>{hanDlaeBuy(cartProduct);getCartData();}}>
                     <div  className={styles.icon}>
                       <img src="" width="15px" />
                     </div>

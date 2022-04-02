@@ -26,7 +26,7 @@ export const delete_api = (id)=> (dispatch)=>{
      .then( (res)=>{
        dispatch(delete_cart_success(id))
          console.log(res)
-         cartapi();
+         dispatch(cartapi());
      })
      .catch((res)=>{
          dispatch(delete_cart_failure())
