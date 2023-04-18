@@ -94,7 +94,7 @@ export default function ProductDetail() {
     getCartData();
     let path = categoryPath[cartProduct.category];
     axios
-      .get(`https://snapdeal-backend.herokuapp.com/${path}`)
+      .get(`https://snapdeel-backend.onrender.com/${path}`)
       .then((res) => setSuggested(res.data))
       .catch((err) => console.log(err));
   }, [cartProduct]);
@@ -137,7 +137,7 @@ export default function ProductDetail() {
 
   const hanDlaeBuy = async () => {
     // axios
-    //   .post("https://snapdeal-backend.herokuapp.com/cart", product)
+    //   .post("https://snapdeel-backend.onrender.com/cart", product)
     //   .then((res) => navigate("/address"))
     //   .catch((err) => console.log(err));
     try {

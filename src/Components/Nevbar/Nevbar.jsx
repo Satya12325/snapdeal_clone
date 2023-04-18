@@ -58,7 +58,7 @@ console.log("cartProduct",cartProduct);
   // setCart(data)
   }
   React.useEffect( () => {
-    // axios.get('https://snapdeal-backend.herokuapp.com/cart')
+    // axios.get('https://snapdeel-backend.onrender.com/cart')
     // .then(res => cartHandler(res.data))
     // .catch(err => console.log(err));
     getCart();

@@ -20,7 +20,7 @@ export default function Address() {
 
   React.useEffect(() => {
     axios
-      .get("https://snapdeal-backend.herokuapp.com/cart")
+      .get("https://snapdeel-backend.onrender.com/cart")
       .then((res) => {
         setIsLoading(true);
         cartHandler(res.data);

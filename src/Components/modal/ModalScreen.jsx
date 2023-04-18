@@ -63,7 +63,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     setName(response.profileObj.name);
     setGoogleId(response.googleId);
     console.log(email, name, googleId, response.googleId);
-    await fetch("https://snapdeal-backend.herokuapp.com/user", {
+    await fetch("https://snapdeel-backend.onrender.com/user", {
       method: "POST",
       body: JSON.stringify({
         googleId: response.googleId,
@@ -111,7 +111,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     console.log(response);
     setName(response.name);
     setFacebookId(response.id);
-    await fetch("https://snapdeal-backend.herokuapp.com/user", {
+    await fetch("https://snapdeel-backend.onrender.com/user", {
       method: "POST",
       body: JSON.stringify({
         facebookId: response.userID,
@@ -157,7 +157,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
     console.log("resend");
     if (inputValue) {
       console.log("sending data to backend", inputValue);
-      await fetch("https://snapdeal-backend.herokuapp.com/user", {
+      await fetch("https://snapdeel-backend.onrender.com/user", {
         method: "POST",
         body: JSON.stringify({ email: inputValue }),
         headers: {
@@ -203,7 +203,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
         facebookId: facebookId,
       };
 
-      await fetch("https://snapdeal-backend.herokuapp.com/user/create", {
+      await fetch("https://snapdeel-backend.onrender.com/user/create", {
         method: "post",
         headers: {
           "content-type": "application/json",
@@ -231,7 +231,7 @@ export const ModalScreen = ({ open, handleOpen, handleClose }) => {
   const checkOtp = async () => {
     if (otp) {
       console.log("sending data to backend", otp);
-      await fetch("https://snapdeal-backend.herokuapp.com/user/otp", {
+      await fetch("https://snapdeel-backend.onrender.com/user/otp", {
         method: "POST",
         body: JSON.stringify({ email: inputValue, otp: otp }),
         headers: {

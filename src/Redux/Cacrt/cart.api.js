@@ -5,7 +5,7 @@ import axios from "axios";
 export const cartapi = (params)=>(dispatch)=>{
     dispatch(get_cart_request())
     axios
-    .get("https://snapdeal-backend.herokuapp.com/cart")
+    .get("https://snapdeel-backend.onrender.com/cart")
     .then((res)=>{
         console.log(res.data)
         dispatch(get_cart_success(res.data))
@@ -22,7 +22,7 @@ export const delete_api = (id)=> (dispatch)=>{
     console.log("id",id)
      dispatch(delete_cart_request());
      axios
-     .delete(`https://snapdeal-backend.herokuapp.com/cart/${id}`)
+     .delete(`https://snapdeel-backend.onrender.com/cart/${id}`)
      .then( (res)=>{
        dispatch(delete_cart_success(id))
          console.log(res)

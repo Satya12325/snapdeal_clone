@@ -77,7 +77,7 @@ export default function Payment() {
 
   React.useEffect(() => {
     axios
-      .get("https://snapdeal-backend.herokuapp.com/cart")
+      .get("https://snapdeel-backend.onrender.com/cart")
       .then((res) => cartHandler(res.data))
       .catch((err) => console.log(err));
   });
