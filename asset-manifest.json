@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/snapdeal_clone/static/css/main.68def1e2.css",
+    "main.js": "/snapdeal_clone/static/js/main.2d572a1b.js",
+    "static/js/787.3a6c190c.chunk.js": "/snapdeal_clone/static/js/787.3a6c190c.chunk.js",
+    "static/media/looding.gif": "/snapdeal_clone/static/media/looding.140bfe177441961b8d17.gif",
+    "static/media/anim.gif": "/snapdeal_clone/static/media/anim.baff8843398c165053c2.gif",
+    "static/media/locimg.png": "/snapdeal_clone/static/media/locimg.44348c7959cd217a9987.png",
+    "static/media/paymenticons.png": "/snapdeal_clone/static/media/paymenticons.69292c61dfbc334dfc38.png",
+    "static/media/download.woff2": "/snapdeal_clone/static/media/download.74da4a6f9c906706e843.woff2",
+    "static/media/instagram.png": "/snapdeal_clone/static/media/instagram.3a9a1dacec8bba38ea93.png",
+    "static/media/revicons.eot": "/snapdeal_clone/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/snapdeal_clone/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/snapdeal_clone/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/snapdeal_clone/index.html",
+    "main.68def1e2.css.map": "/snapdeal_clone/static/css/main.68def1e2.css.map",
+    "main.2d572a1b.js.map": "/snapdeal_clone/static/js/main.2d572a1b.js.map",
+    "787.3a6c190c.chunk.js.map": "/snapdeal_clone/static/js/787.3a6c190c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.68def1e2.css",
+    "static/js/main.2d572a1b.js"
+  ]
+}
